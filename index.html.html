@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>加页手记蓝宝石项链收集</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="加页手记">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1c7a4a">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%233b82f6'/><stop offset='1' stop-color='%231e40af'/></linearGradient></defs><rect width='200' height='200' rx='40' fill='url(%23g)'/><polygon points='100,30 160,80 140,160 60,160 40,80' fill='%23fff' opacity='0.95'/><polygon points='100,50 140,85 130,140 70,140 60,85' fill='%233b82f6'/><polygon points='100,60 125,88 118,128 82,128 75,88' fill='%23fff' opacity='0.9'/></svg>">
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+(function(){
+  var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>" +
+    "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
+    "<stop offset='0' stop-color='#3b82f6'/><stop offset='1' stop-color='#1e40af'/>" +
+    "</linearGradient></defs>" +
+    "<rect width='200' height='200' rx='40' fill='url(#g)'/>" +
+    "<polygon points='100,30 160,80 140,160 60,160 40,80' fill='#fff' opacity='0.95'/>" +
+    "<polygon points='100,50 140,85 130,140 70,140 60,85' fill='#3b82f6'/>" +
+    "<polygon points='100,60 125,88 118,128 82,128 75,88' fill='#fff' opacity='0.9'/>" +
+    "</svg>";
+  var img = new Image();
+  img.onload = function(){
+    var c = document.createElement('canvas');
+    c.width = 180; c.height = 180;
+    var ctx = c.getContext('2d');
+    ctx.drawImage(img, 0, 0, 180, 180);
+    try {
+      var png = c.toDataURL('image/png');
+      var link = document.createElement('link');
+      link.rel = 'apple-touch-icon';
+      link.href = png;
+      document.head.appendChild(link);
+    } catch(e){}
+  };
+  img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+
+  var manifest = {
+    name: '加页手记蓝宝石项链收集',
+    short_name: '加页手记',
+    start_url: '.',
+    display: 'standalone',
+    background_color: '#f5f6f8',
+    theme_color: '#1c7a4a',
+    orientation: 'portrait',
+    icons: [{
+      src: 'data:image/svg+xml;utf8,' + encodeURIComponent(svg),
+      sizes: 'any',
+      type: 'image/svg+xml'
+    }]
+  };
+  try {
+    var blob = new Blob([JSON.stringify(manifest)], {type: 'application/manifest+json'});
+    var mlink = document.createElement('link');
+    mlink.rel = 'manifest';
+    mlink.href = URL.createObjectURL(blob);
+    document.head.appendChild(mlink);
+  } catch(e){}
+})();
+</script>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;background:#f5f6f8;color:#222;font-size:15px;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+.wrap{max-width:100%;margin:0 auto;padding:12px;padding-left:calc(12px + env(safe-area-inset-left));padding-right:calc(12px + env(safe-area-inset-right));padding-top:calc(12px + env(safe-area-inset-top))}
+h1{font-size:17px;margin:0 0 10px;text-align:center}
+.panel{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.fbox{background:#fff;border:1px solid #e3e5e8;border-radius:10px;padding:12px}
+.fbox label{display:block;font-weight:600;margin-bottom:8px;font-size:14px}
+.fbox input[type=file]{width:100%;font-size:13px;padding:8px 0}
+.hint{color:#888;font-size:12px;margin-top:6px;word-break:break-all;line-height:1.4}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.card{background:#fff;border:1px solid #e3e5e8;border-radius:10px;padding:10px 6px;text-align:center}
+.card .num{font-size:20px;font-weight:700}
+.card .lab{font-size:11px;color:#777;margin-top:2px}
+.bar{height:8px;background:#e9ecef;border-radius:4px;overflow:hidden;margin-bottom:12px}
+.bar>i{display:block;height:100%;background:#2f9e63;width:0;transition:.3s}
+.pnl{background:#fff;border:1px solid #e3e5e8;border-radius:10px;padding:12px;margin-bottom:12px}
+.pnl.collapsed .pnl-body{display:none}
+.pnl-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+.pnl-head-title{font-weight:600;font-size:14px}
+.pnl-head-arrow{font-size:12px;color:#888;transition:.2s}
+.pnl.collapsed .pnl-head-arrow{transform:rotate(-90deg)}
+.pnl-body{margin-top:10px}
+.add-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.add-field{display:flex;flex-direction:column;gap:3px}
+.add-field label{font-size:11px;color:#888;font-weight:500}
+.add-field select,.add-field input{padding:9px 8px;border:1px solid #d5d8dc;border-radius:8px;font-size:13px;width:100%;background:#fff;outline:none;color:#222}
+.add-field select:disabled,.add-field input:disabled{background:#f0f2f5;color:#888;cursor:not-allowed}
+.add-actions{display:flex;gap:8px;margin-top:4px}
+.add-actions button{flex:1;padding:11px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-green{background:#2f9e63;color:#fff}
+.btn-amber{background:#f59e0b;color:#fff}
+.btn-grey{background:#f0f2f5;color:#555;flex:0 0 76px}
+.add-hint{font-size:12px;color:#888;margin-top:8px;min-height:18px;line-height:1.4}
+.add-hint.ok{color:#1c7a4a;font-weight:600}
+.add-hint.err{color:#c0392b;font-weight:600}
+.add-preview{font-size:12px;color:#666;background:#f8f9fa;border-radius:6px;padding:6px 8px;margin-top:8px;word-break:break-all;line-height:1.5}
+.add-preview b{color:#1c7a4a}
+.add-preview .plus-note{color:#b45309;font-weight:600}
+.task-badge{display:inline-block;background:#fef3c7;color:#b45309;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px}
+.task-list{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.task-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#fffbeb;border:1px solid #fef3c7;border-radius:8px;font-size:13px}
+.task-item.done{text-decoration:line-through;color:#aaa;background:#f8f9fa;border-color:#e2e8f0}
+.task-item-text{flex:1;word-break:break-all}
+.task-item-btn{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:#f59e0b;color:#fff}
+.task-item.done .task-item-btn{display:none}
+.task-empty{font-size:12px;color:#999;text-align:center;padding:10px}
+.task-stats{font-size:12px;color:#888;text-align:center;margin-top:6px}
+.task-hint{font-size:11px;color:#aaa;text-align:center;margin-top:4px}
+.badge-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.badge{background:#fff;border:1px solid #e3e5e8;border-radius:10px;padding:8px 4px;text-align:center;opacity:.35;filter:grayscale(1);transition:.3s;position:relative;cursor:pointer}
+.badge.unlocked{opacity:1;filter:none;border-color:#ffd700;box-shadow:0 0 8px rgba(255,215,0,.45);background:linear-gradient(180deg,#fffef7,#fff9e0)}
+.badge .icon{font-size:22px;line-height:1.2}
+.badge .name{font-size:10px;color:#666;margin-top:2px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge .pct{font-size:9px;color:#999}
+.badge.hidden-ach.unlocked{border-color:#a855f7;box-shadow:0 0 8px rgba(168,85,247,.5);background:linear-gradient(180deg,#faf5ff,#f3e8ff)}
+.badge.gem-ach.unlocked{border-color:#3b82f6;box-shadow:0 0 10px rgba(59,130,246,.55);background:linear-gradient(180deg,#eff6ff,#dbeafe)}
+.badge.mourn-ach.unlocked{border-color:#94a3b8;box-shadow:0 0 8px rgba(148,163,184,.5);background:linear-gradient(180deg,#f8fafc,#e2e8f0)}
+.badge.special-ach.unlocked{border-color:#f43f5e;box-shadow:0 0 10px rgba(244,63,94,.6);background:linear-gradient(180deg,#fff1f2,#ffe4e6)}
+.badge.mystery-badge.unlocked{border-color:#7c3aed;box-shadow:0 0 12px rgba(124,58,237,.7);background:linear-gradient(180deg,#faf5ff,#ddd6fe)}
+.badge.mystery-badge.unlocked .icon{animation:mysteryPulse 1.6s infinite}
+.badge.custom-badge.unlocked{border-color:#f59e0b;box-shadow:0 0 10px rgba(245,158,11,.55);background:linear-gradient(180deg,#fffbeb,#fef3c7)}
+.badge.task-ach.unlocked{border-color:#f59e0b;box-shadow:0 0 10px rgba(245,158,11,.55);background:linear-gradient(180deg,#fffbeb,#fef3c7)}
+.badge.pinned::before{content:'📌';position:absolute;top:-6px;right:-6px;font-size:14px;z-index:2}
+@keyframes mysteryPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.badge-wall-title{font-size:12px;color:#999;margin:4px 0 6px;font-weight:600}
+.reset-badge{display:block;margin:0 auto 12px;background:transparent;border:none;color:#bbb;font-size:11px;text-decoration:underline;cursor:pointer;padding:4px}
+.show-hidden-link{display:block;margin:0 auto 12px;background:transparent;border:none;color:#7c3aed;font-size:11px;text-decoration:underline;cursor:pointer;padding:2px}
+.toolbar{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.toolbar input,.toolbar select,.toolbar button{padding:12px;border:1px solid #d5d8dc;border-radius:8px;background:#fff;font-size:14px;width:100%;outline:none}
+.toolbar button{cursor:pointer;font-weight:600;color:#333}
+.btn-group{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn-group button{font-size:13px;padding:10px}
+.export-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.export-group button{background:#e7f6ee;border-color:#b7e0cb;color:#1c7a4a;font-size:13px;padding:10px}
+.export-new-btn{width:100%;margin-top:8px;padding:12px;border:1px solid #3b82f6;border-radius:8px;background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#1e40af;font-size:14px;font-weight:700;cursor:pointer}
+.export-new-hint{font-size:11px;color:#888;text-align:center;margin-top:4px}
+.tablebox{background:#fff;border:1px solid #e3e5e8;border-radius:10px;overflow:auto;max-height:50vh;-webkit-overflow-scrolling:touch}
+table{border-collapse:separate;border-spacing:0;font-size:13px;min-width:100%}
+th,td{border-right:1px solid #eceef1;border-bottom:1px solid #eceef1;padding:10px 8px;white-space:nowrap;text-align:center}
+thead th{position:sticky;top:0;background:#fafbfc;z-index:2;font-weight:600;font-size:13px}
+th.rowhead{position:sticky;left:0;background:#fafbfc;z-index:1;text-align:left;font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+th.corner{position:sticky;left:0;top:0;z-index:3;background:#f2f4f6}
+td.cell{cursor:pointer;min-width:56px;min-height:36px}
+td.done{background:#e7f6ee;color:#1c7a4a;font-weight:600}
+td.blank{background:#fcfcfd;color:#c9ccd1}
+td.dim{opacity:.15}
+td.disabled{background:#e9ecef !important;color:#adb5bd !important;cursor:not-allowed !important;text-decoration:line-through}
+td.disabled::after{content:'🔒';font-size:9px;display:block;opacity:.6}
+td.gem-cell{background:#dbeafe !important;color:#1e40af;font-weight:700;box-shadow:inset 0 0 0 2px #3b82f6}
+td.even-highlight{background:#fef3c7 !important;color:#b45309;font-weight:700}
+td.multiple3-highlight{background:#cffafe !important;color:#0e7490;font-weight:700}
+td.both-highlight{background:#fde68a !important;color:#92400e;font-weight:700}
+td.row-complete{background:#bfdbfe !important;color:#1e3a8a !important;font-weight:700;box-shadow:inset 0 0 0 1px #93c5fd}
+th.rowhead.row-complete-head{background:#bfdbfe !important;color:#1e3a8a !important}
+td.flash-added{animation:flashAdded 1.2s ease}
+@keyframes flashAdded{0%{background:#fff3cd}30%{background:#ffe58f}100%{}}
+.empty{padding:30px;text-align:center;color:#999;font-size:14px}
+.detail{margin-top:12px;background:#fff;border:1px solid #e3e5e8;border-radius:10px;padding:12px;font-size:13px;line-height:1.6;min-height:44px;word-break:break-all}
+.legend{margin-top:10px;font-size:12px;color:#777;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.even-legend{color:#b45309}
+.multiple3-legend{color:#0e7490}
+.both-legend{color:#92400e}
+.disabled-legend{color:#6c757d}
+.gem-legend{color:#1e40af}
+.row-complete-legend{color:#1e3a8a}
+.mourn-options{display:flex;flex-direction:column;gap:4px;font-size:12px;color:#666;margin-bottom:8px}
+.mourn-option-row{display:flex;align-items:center;gap:6px}
+.mourn-input-row{display:flex;gap:6px;margin-bottom:8px}
+.mourn-input-row input{flex:1;padding:10px;border:1px solid #d5d8dc;border-radius:8px;font-size:14px;outline:none}
+.mourn-input-row button{padding:10px 16px;border:none;border-radius:8px;background:#475569;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.mourn-list{max-height:300px;overflow-y:auto;background:#f8fafc;border-radius:8px;padding:8px;margin-bottom:8px}
+.mourn-item{display:flex;align-items:flex-start;gap:6px;padding:6px 8px;border-bottom:1px solid #e2e8f0;font-size:13px;line-height:1.5;word-break:break-all}
+.mourn-item-time{font-size:11px;color:#94a3b8;flex-shrink:0;min-width:80px}
+.mourn-item-text{color:#334155;flex:1}
+.mourn-danmaku-badge{display:inline-block;background:#a855f7;color:#fff;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:4px;vertical-align:middle}
+.mourn-item-del{color:#cbd5e1;cursor:pointer;font-size:16px;flex-shrink:0}
+.mourn-counter{text-align:center;font-size:13px;color:#475569;margin-bottom:8px;font-weight:600}
+.mourn-pray-btn{width:100%;padding:14px;border:none;border-radius:10px;background:linear-gradient(135deg,#64748b,#475569);color:#fff;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:2px}
+.mourn-custom-panel{display:none;margin-top:10px;padding:10px;background:#f1f5f9;border-radius:8px}
+.mourn-custom-panel.show{display:block}
+.mourn-custom-item{display:flex;gap:4px;margin-bottom:4px}
+.mourn-custom-item input{flex:1;padding:6px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;outline:none}
+.mourn-custom-item button{padding:6px 10px;border:none;border-radius:6px;background:#e2e8f0;color:#64748b;font-size:12px;cursor:pointer}
+.mourn-custom-add{width:100%;padding:8px;border:1px dashed #94a3b8;border-radius:6px;background:transparent;color:#475569;font-size:12px;cursor:pointer}
+.danmaku-layer{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;overflow:hidden}
+.danmaku-item{position:absolute;white-space:nowrap;font-size:15px;font-weight:600;color:#334155;text-shadow:0 1px 3px rgba(255,255,255,.9);animation:danmakuMove linear forwards}
+@keyframes danmakuMove{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+.danmaku-item.mourn-danmaku{font-style:italic;font-weight:500;font-size:14px;color:#475569;background:rgba(255,255,255,.92);padding:3px 12px;border-radius:14px;border:1px solid #cbd5e1;box-shadow:0 1px 4px rgba(0,0,0,.08);text-shadow:none}
+.ach-modal,.badge-modal,.custom-badge-modal,.list-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.ach-modal.show,.badge-modal.show,.custom-badge-modal.show,.list-modal.show{display:flex}
+.ach-content{background:#fff;border-radius:16px;padding:20px;max-width:340px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:80vh;overflow-y:auto}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.ach-title{font-size:18px;font-weight:700;margin-bottom:12px;color:#d4a017}
+.ach-title.hidden-title{color:#a855f7}
+.ach-title.special-title{color:#f43f5e}
+.ach-title.mystery-title{color:#7c3aed}
+.ach-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:#fffbea;margin-bottom:8px;border:1px solid #ffe58f}
+.ach-item.hidden-ach{background:#faf5ff;border-color:#d8b4fe}
+.ach-item.gem-ach{background:#eff6ff;border-color:#bfdbfe}
+.ach-item.mourn-ach{background:#f8fafc;border-color:#cbd5e1}
+.ach-item.special-ach{background:#fff1f2;border-color:#fecdd3}
+.ach-item.mystery-ach{background:#faf5ff;border-color:#c4b5fd}
+.ach-item.task-ach{background:#fffbeb;border-color:#fde68a}
+.ach-item .icon{font-size:28px}
+.ach-item .info{text-align:left;flex:1}
+.ach-item .name{font-weight:700;font-size:14px}
+.ach-item .desc{font-size:12px;color:#888}
+.ach-btn{margin-top:12px;padding:10px 24px;border:none;border-radius:8px;background:#4c9aff;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.badge-modal-content{background:#fff;border-radius:16px;padding:20px;max-width:340px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:pop .35s}
+.badge-modal-icon{font-size:48px;margin-bottom:8px}
+.badge-modal-name{font-size:18px;font-weight:700;margin-bottom:6px}
+.badge-modal-desc{font-size:13px;color:#666;margin-bottom:16px;line-height:1.5}
+.badge-modal-actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:12px}
+.badge-modal-actions button{padding:8px 14px;border:1px solid #d5d8dc;border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:#333}
+.badge-modal-actions button.danger{color:#ef4444;border-color:#fecaca}
+.badge-modal-close{padding:10px 24px;border:none;border-radius:8px;background:#4c9aff;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.custom-badge-content{background:#fff;border-radius:16px;padding:20px;max-width:340px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.custom-badge-title{font-size:17px;font-weight:700;text-align:center;color:#7c3aed;margin-bottom:14px}
+.custom-badge-field{margin-bottom:12px}
+.custom-badge-field label{display:block;font-size:12px;color:#666;margin-bottom:4px;font-weight:600}
+.custom-badge-field input{width:100%;padding:10px;border:1px solid #d5d8dc;border-radius:8px;font-size:14px;outline:none}
+.custom-badge-preview{text-align:center;background:#faf5ff;border-radius:8px;padding:10px;margin-bottom:12px;border:1px dashed #c4b5fd}
+.custom-badge-preview .icon{font-size:32px}
+.custom-badge-preview .name{font-size:13px;font-weight:700;color:#7c3aed;margin-top:2px}
+.custom-badge-preview .desc{font-size:11px;color:#888;margin-top:2px}
+.custom-badge-actions{display:flex;gap:8px}
+.custom-badge-actions button{flex:1;padding:12px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+#customBadgeCancel{background:#f0f2f5;color:#555}
+#customBadgeConfirm{background:#7c3aed;color:#fff}
+.list-content{background:#fff;border-radius:12px;width:100%;max-width:600px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.list-header{padding:14px 16px;border-bottom:1px solid #e3e5e8;display:flex;justify-content:space-between;align-items:center}
+.list-title{font-size:15px;font-weight:700}
+.list-count{font-size:12px;color:#888}
+.list-body{flex:1;overflow-y:auto;padding:12px 16px}
+.list-table{width:100%;border-collapse:collapse;font-size:12px}
+.list-table th,.list-table td{border:1px solid #e2e8f0;padding:6px 8px;text-align:left;word-break:break-all}
+.list-table th{background:#f8fafc;font-weight:600;position:sticky;top:0;z-index:1}
+.list-empty{text-align:center;color:#999;padding:30px;font-size:13px}
+.list-footer{padding:12px 16px;border-top:1px solid #e3e5e8;display:flex;gap:8px}
+.list-footer button{flex:1;padding:11px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+#listCloseBtn,#recycleCloseBtn{background:#f0f2f5;color:#555}
+#listExportBtn{background:#4c9aff;color:#fff}
+#floatImage{display:none;position:fixed;z-index:9999;bottom:calc(20px + env(safe-area-inset-bottom));right:20px;width:180px;max-height:300px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:move;touch-action:none;border:2px solid #4c9aff;background:#fff;overflow:hidden}
+#floatImage img{width:100%;display:block}
+#closeFloatBtn{position:absolute;top:-10px;right:-10px;width:24px;height:24px;background:#ff4d4f;color:#fff;border-radius:50%;text-align:center;line-height:24px;font-weight:bold;cursor:pointer}
+.danger-zone{background:#fff;border:1px solid #fecaca;border-radius:10px;padding:12px;margin-top:12px;margin-bottom:12px}
+.danger-zone-title{font-weight:600;font-size:13px;color:#991b1b;margin-bottom:8px}
+.danger-zone-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+.danger-zone-btn{padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
+.recycle-btn{border:1px solid #3b82f6;background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#1e40af;position:relative}
+.recycle-btn:active{background:#bfdbfe}
+.recycle-btn .badge-count{background:#ef4444;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px}
+.init-btn{border:1px solid #ef4444;background:linear-gradient(135deg,#fff1f2,#fee2e2);color:#991b1b}
+.init-btn:active{background:#fecaca}
+.danger-zone-hint{font-size:11px;color:#b91c1c;text-align:center;margin-top:6px;opacity:.7}
+.recycle-item{display:flex;align-items:center;gap:8px;padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:6px;font-size:13px}
+.recycle-item .icon{font-size:22px;flex-shrink:0}
+.recycle-item .info{flex:1;min-width:0}
+.recycle-item .name{font-weight:600;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recycle-item .desc{font-size:11px;color:#888;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recycle-item .btns{display:flex;gap:4px;flex-shrink:0}
+.recycle-item .btns button{padding:5px 10px;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.restore-btn{background:#dbeafe;color:#1e40af}
+.permanent-btn{background:#fecaca;color:#991b1b}
+@media (min-width:600px){
+  .wrap{max-width:1000px;padding:20px}
+  .panel{flex-direction:row}
+  .stats{grid-template-columns:1fr 1fr 1fr 1fr}
+  .toolbar{flex-direction:row;flex-wrap:wrap}
+  .toolbar input{flex:1;width:auto}
+  .toolbar button{width:auto}
+  .btn-group{display:flex;gap:8px;flex:1}
+  .add-grid{grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📊 加页手记蓝宝石项链收集</h1>
+
+  <div class="panel">
+    <div class="fbox">
+      <label>📂 导入表格</label>
+      <input type="file" id="fileImport" accept=".xlsx,.xls,.csv">
+      <div class="hint" id="importInfo">导入空白表格或收集记录（首行为列名，首列为行名）</div>
+    </div>
+    <div class="fbox">
+      <label>🖼️ 上传图片辅助对照（可选）</label>
+      <input type="file" id="fileImage" accept="image/*" capture="environment">
+      <div class="hint" id="imageInfo">上传图片会悬浮在屏幕右侧</div>
+    </div>
+  </div>
+
+  <div class="pnl" id="addPanel">
+    <div class="pnl-head" id="addHead">
+      <div class="pnl-head-title" style="color:#1c7a4a">✏️ 新收集添加</div>
+      <div class="pnl-head-arrow">▼</div>
+    </div>
+    <div class="pnl-body">
+      <div class="add-grid">
+        <div class="add-field"><label>颜色</label><select id="addColor"></select></div>
+        <div class="add-field"><label>蓝宝石价值</label><select id="addPrice"></select></div>
+        <div class="add-field"><label>链身</label><select id="addChain"></select></div>
+        <div class="add-field"><label>流光火彩</label><select id="addFire"></select></div>
+        <div class="add-field"><label>宝石净度</label><select id="addClarity"></select></div>
+        <div class="add-field"><label>数值</label><input type="number" id="addValue" placeholder="1-10" inputmode="numeric"></div>
+      </div>
+      <div class="add-preview" id="addPreview">预览：请选择完整信息</div>
+      <div class="add-actions">
+        <button id="btnAddNew" class="btn-green">➕ 添加记录</button>
+        <button id="btnClearNew" class="btn-grey">清空</button>
+      </div>
+      <div class="add-hint" id="addHint"></div>
+    </div>
+  </div>
+
+  <div class="pnl collapsed" id="taskPanel">
+    <div class="pnl-head" id="taskHead">
+      <div class="pnl-head-title" style="color:#b45309">📋 任务<span class="task-badge" id="taskBadge" style="display:none">0</span></div>
+      <div class="pnl-head-arrow">▼</div>
+    </div>
+    <div class="pnl-body">
+      <div class="add-grid">
+        <div class="add-field"><label>颜色</label><select id="taskColor"></select></div>
+        <div class="add-field"><label>蓝宝石价值</label><select id="taskPrice"></select></div>
+        <div class="add-field"><label>链身</label><select id="taskChain"></select></div>
+        <div class="add-field"><label>流光火彩</label><select id="taskFire"></select></div>
+        <div class="add-field"><label>宝石净度</label><select id="taskClarity"></select></div>
+      </div>
+      <div class="add-actions">
+        <button id="btnAddTask" class="btn-amber">➕ 添加任务</button>
+        <button id="btnClearTask" class="btn-grey">清空</button>
+      </div>
+      <div class="task-list" id="taskList"><div class="task-empty">暂无任务</div></div>
+      <div class="task-stats" id="taskStats">已设定 0 次 · 已完成 0 次</div>
+      <div class="task-hint">长按任务可删除（将进入回收站）</div>
+    </div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+  <div class="bar"><i id="bar"></i></div>
+
+  <div class="badge-wall-title">🏅 我的勋章</div>
+  <div class="badge-wall" id="badgeWall"></div>
+  <button class="show-hidden-link" id="showHiddenLink" style="display:none">👁️ 显示已隐藏的勋章</button>
+  <button class="reset-badge" id="resetBadgeBtn">重置勋章记录</button>
+
+  <div class="toolbar">
+    <input id="search" placeholder="🔍 搜索行名或列名...">
+    <select id="filter">
+      <option value="all">全部显示</option>
+      <option value="blank">仅看空白</option>
+      <option value="done">仅看已收集</option>
+    </select>
+    <div class="btn-group">
+      <button id="btnExportAll" style="background:#f8f9fa">📥 全量明细</button>
+      <button id="btnExportBlank" style="background:#fff3cd;border-color:#ffeeba;color:#856404">📋 未收集清单</button>
+    </div>
+    <div class="export-group">
+      <button id="btnExportStats">📈 蓝宝石总量</button>
+      <button id="btnExportCollected">✅ 已收集明细</button>
+    </div>
+    <button class="export-new-btn" id="btnExportNewTable">💾 导出新收集表格</button>
+    <div class="export-new-hint">可直接作为下次导入使用</div>
+  </div>
+
+  <div class="tablebox" id="tablebox"><div class="empty">请先导入表格</div></div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:#e7f6ee;border:1px solid #b7e0cb"></i>已收集</span>
+    <span><i class="dot" style="background:#fcfcfd;border:1px solid #e3e5e8"></i>空白</span>
+    <span class="disabled-legend">🔒 禁用格</span>
+    <span class="gem-legend">💎 亮晶晶</span>
+    <span class="even-legend">🟡 偶数</span>
+    <span class="multiple3-legend">🔵 3倍数</span>
+    <span class="both-legend">🟠 两者皆是</span>
+    <span class="row-complete-legend">🟦 整行全收集</span>
+  </div>
+
+  <div class="detail" id="detail">点击表格中的格子查看详情</div>
+
+  <div class="pnl collapsed" id="mournPanel">
+    <div class="pnl-head" id="mournHead">
+      <div class="pnl-head-title" style="color:#475569">🕯️ 永远怀念😭</div>
+      <div class="pnl-head-arrow">▼</div>
+    </div>
+    <div class="pnl-body">
+      <div class="mourn-input-row">
+        <input id="mournInput" placeholder="写下你想说的话..." maxlength="200">
+        <button id="btnMournAdd">记录</button>
+      </div>
+      <div class="mourn-options">
+        <div class="mourn-option-row">
+          <input type="checkbox" id="mournWithTime" checked>
+          <label for="mournWithTime">记录时间</label>
+        </div>
+        <div class="mourn-option-row">
+          <input type="checkbox" id="mournShowInDanmaku">
+          <label for="mournShowInDanmaku">显示在弹幕中（成为弹幕池内容）</label>
+        </div>
+        <div class="mourn-option-row">
+          <input type="checkbox" id="mournWithEmoji" checked>
+          <label for="mournWithEmoji">弹幕自动添加 emoji（仅对预设弹幕生效）</label>
+        </div>
+      </div>
+      <div class="mourn-list" id="mournList"><div class="empty" style="padding:16px;font-size:12px">暂无记录</div></div>
+      <div class="mourn-counter" id="mournCounter">📝 已记录 0 条</div>
+      <button class="mourn-pray-btn" id="btnPray">🙏🙏🙏</button>
+      <div class="mourn-custom-panel" id="mournCustomPanel">
+        <div class="mourn-custom-title" style="font-size:12px;color:#475569;font-weight:600;margin-bottom:6px">🎨 自定义弹幕（最多10条）</div>
+        <div id="mournCustomList"></div>
+        <button class="mourn-custom-add" id="btnMournCustomAdd">➕ 添加弹幕</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="danger-zone">
+    <div class="danger-zone-title">⚠️ 危险操作区</div>
+    <div class="danger-zone-actions">
+      <button class="danger-zone-btn recycle-btn" id="btnRecycle">🗑️ 回收站<span class="badge-count" id="recycleBadge" style="display:none">0</span></button>
+      <button class="danger-zone-btn init-btn" id="btnInitAll">🔄 初始化小程序</button>
+    </div>
+    <div class="danger-zone-hint">回收站可恢复已删除内容；初始化将清空所有数据</div>
+  </div>
+</div>
+
+<div class="danmaku-layer" id="danmakuLayer"></div>
+
+<div id="floatImage">
+  <div id="closeFloatBtn">×</div>
+  <img id="floatImgSrc" src="" alt="对照图">
+</div>
+
+<div class="ach-modal" id="achievementModal">
+  <div class="ach-content">
+    <div class="ach-title" id="achTitle">🎉 成就解锁！</div>
+    <div id="achList"></div>
+    <button class="ach-btn" id="achCloseBtn">太棒了！</button>
+  </div>
+</div>
+
+<div class="badge-modal" id="badgeModal">
+  <div class="badge-modal-content">
+    <div id="badgeModalBody"></div>
+    <div class="badge-modal-actions" id="badgeModalActions"></div>
+    <button class="badge-modal-close" id="badgeModalClose">关闭</button>
+  </div>
+</div>
+
+<div class="custom-badge-modal" id="customBadgeModal">
+  <div class="custom-badge-content">
+    <div class="custom-badge-title" id="customBadgeTitle">✨ 创建自定义徽章</div>
+    <div class="custom-badge-field"><label>图标（1个 Emoji）</label><input type="text" id="customBadgeIcon" maxlength="4" placeholder="如 ⭐ 🌟 💫"></div>
+    <div class="custom-badge-field"><label>名称（最多10字）</label><input type="text" id="customBadgeName" maxlength="10" placeholder="如 我的勋章"></div>
+    <div class="custom-badge-field"><label>简介（可选）</label><input type="text" id="customBadgeDesc" maxlength="50" placeholder="简短描述"></div>
+    <div class="custom-badge-preview">
+      <div class="icon" id="previewIcon">✨</div>
+      <div class="name" id="previewName">我的勋章</div>
+      <div class="desc" id="previewDesc">简短描述</div>
+    </div>
+    <div class="custom-badge-actions">
+      <button id="customBadgeCancel">取消</button>
+      <button id="customBadgeConfirm">创建</button>
+    </div>
+  </div>
+</div>
+
+<div class="list-modal" id="listModal">
+  <div class="list-content">
+    <div class="list-header">
+      <div class="list-title" id="listTitle">列表</div>
+      <div class="list-count" id="listCount"></div>
+    </div>
+    <div class="list-body" id="listBody"></div>
+    <div class="list-footer">
+      <button id="listCloseBtn">关闭list</button>
+      <button id="listExportBtn">导出list</button>
+    </div>
+  </div>
+</div>
+
+<div class="list-modal" id="recycleModal">
+  <div class="list-content">
+    <div class="list-header">
+      <div class="list-title">🗑️ 回收站</div>
+      <div class="list-count" id="recycleCount"></div>
+    </div>
+    <div class="list-body" id="recycleBody"></div>
+    <div class="list-footer">
+      <button id="recycleCloseBtn">关闭</button>
+      <button id="recycleClearAllBtn" style="background:#fecaca;color:#991b1b">清空回收站</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const KEY = (r, c) => r + '\u0001' + c;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+const TARGET_COLS = ['红','蓝','绿','黄','紫'];
+const SPECIAL_PRICE = '300w';
+const SPECIAL_CHAIN = '璨光秘银';
+const SPECIAL_FIRE = '虹彩幻影';
+const SPECIAL_CLARITY = '稀世瑰宝';
+const SPECIAL_COLOR = '蓝';
+const SPECIAL_ROW = `${SPECIAL_PRICE}-${SPECIAL_CHAIN}-${SPECIAL_FIRE}-${SPECIAL_CLARITY}`;
+const GEM_ROW = SPECIAL_ROW, GEM_COL = SPECIAL_COLOR, GEM_KEY = KEY(GEM_ROW, GEM_COL);
+const isDisabledCell = (r,c) => r.startsWith(SPECIAL_PRICE + '-') && c !== SPECIAL_COLOR;
+const isGemCell = (r,c) => r === GEM_ROW && c === GEM_COL;
+let gemCount = 0;
+
+const K = {
+  MOURN:'gem_mourn_records_v1', PRAY:'gem_pray_count_v1', CUSTOM_DANMAKU:'gem_custom_danmaku_v1',
+  ACH:'gem_achievements_v1', HIDDEN_ACH:'gem_hidden_achievements_v3', MOURN_ACH:'gem_mourn_achievements_v1',
+  PRAY_ACH:'gem_pray_achievements_v1', SPECIAL_ACH:'gem_special_achievements_v2', MYSTERY:'gem_mystery_state_v1',
+  CUSTOM_BADGES:'gem_custom_badges_v1', BADGE_ORDER:'gem_badge_order_v1', PINNED_BADGE:'gem_pinned_badge_v1',
+  HIDDEN_BADGES:'gem_hidden_badges_v1', TASKS:'gem_tasks_v1', TASK_STATS:'gem_task_stats_v1',
+  TASK_ACH:'gem_task_achievements_v1', RECYCLE:'gem_recycle_bin_v2', RECYCLE_BANNED:'gem_recycle_banned_v1'
+};
+
+const DEFAULT_DANMAKU = ['永远怀念😭😭😭','拒绝加页手记鹿锤打团😭','最不敏感之人😭','这也太绅士了吧🥹','不要再打了💔','我一直在哭😇'];
+const SAD_EMOJIS = ['😭','💔','😢','🥹','😞','😔','🕯️','💧','😿','🖤','😇','😖'];
+
+const loadSet = k => { try { return new Set(JSON.parse(localStorage.getItem(k) || '[]')); } catch(e){ return new Set(); } };
+const saveSet = (k, s) => { try { localStorage.setItem(k, JSON.stringify([...s])); } catch(e){} };
+const loadJSON = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v === null || v === undefined ? d : v; } catch(e){ return d; } };
+const saveJSON = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
+
+let mournRecords = loadJSON(K.MOURN, []);
+let prayCount = parseInt(localStorage.getItem(K.PRAY) || '0', 10) || 0;
+let customDanmaku = loadJSON(K.CUSTOM_DANMAKU, null) || [...DEFAULT_DANMAKU];
+let recycleItems = loadJSON(K.RECYCLE, []);
+let recycleBanned = loadSet(K.RECYCLE_BANNED);
+
+/* ========== 回收站 ========== */
+function addToRecycle(item){
+  item.rid = 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+  item.deletedAt = Date.now();
+  recycleItems.unshift(item);
+  saveJSON(K.RECYCLE, recycleItems);
+  updateRecycleBadge();
+}
+function updateRecycleBadge(){
+  const b = $('recycleBadge');
+  if (recycleItems.length > 0){ b.style.display = 'inline-block'; b.textContent = recycleItems.length; }
+  else b.style.display = 'none';
+}
+function openRecycleModal(){
+  const body = $('recycleBody');
+  $('recycleCount').textContent = `${recycleItems.length} 项`;
+  if (!recycleItems.length){
+    body.innerHTML = '<div class="list-empty">回收站是空的 🗑️</div>';
+  } else {
+    body.innerHTML = recycleItems.map(it => `
+      <div class="recycle-item" data-rid="${esc(it.rid)}">
+        <div class="icon">${it.icon || '📦'}</div>
+        <div class="info">
+          <div class="name">${esc(it.name)}</div>
+          <div class="desc">${esc(it.desc || '')}</div>
+        </div>
+        <div class="btns">
+          <button class="restore-btn" data-action="restore" data-rid="${esc(it.rid)}">恢复</button>
+          <button class="permanent-btn" data-action="permanent" data-rid="${esc(it.rid)}">彻底删除</button>
+        </div>
+      </div>
+    `).join('');
+    body.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => handleRecycleAction(btn.dataset.action, btn.dataset.rid);
+    });
+  }
+  $('recycleModal').classList.add('show');
+}
+function handleRecycleAction(action, rid){
+  const idx = recycleItems.findIndex(it => it.rid === rid);
+  if (idx === -1) return;
+  const item = recycleItems[idx];
+
+  if (action === 'restore'){
+    if (item.type === 'mourn'){
+      mournRecords.push(item.data); saveJSON(K.MOURN, mournRecords);
+      renderMournList(); checkMournAchievements();
+    } else if (item.type === 'task'){
+      tasks.push(item.data); saveJSON(K.TASKS, tasks); renderTasks();
+    } else if (item.type === 'special'){
+      unlockedSpecialAchievements.add(item.data.achId); saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
+      renderAllAchievements();
+    } else if (item.type === 'custom'){
+      customBadges.push(item.data); saveJSON(K.CUSTOM_BADGES, customBadges); renderAllAchievements();
+    }
+    recycleItems.splice(idx, 1);
+    saveJSON(K.RECYCLE, recycleItems);
+    updateRecycleBadge();
+    openRecycleModal();
+  } else if (action === 'permanent'){
+    if (!confirm(`⚠️ 彻底删除「${item.name}」？\n\n此操作不可恢复。`)) return;
+    if (item.type === 'special'){ recycleBanned.add(item.data.achId); saveSet(K.RECYCLE_BANNED, recycleBanned); }
+    else if (item.type === 'custom'){ recycleBanned.add(item.data.id); saveSet(K.RECYCLE_BANNED, recycleBanned); }
+    recycleItems.splice(idx, 1);
+    saveJSON(K.RECYCLE, recycleItems);
+    updateRecycleBadge();
+    openRecycleModal();
+  }
+}
+$('btnRecycle').onclick = () => openRecycleModal();
+$('recycleCloseBtn').onclick = () => $('recycleModal').classList.remove('show');
+$('recycleClearAllBtn').onclick = () => {
+  if (!recycleItems.length) return alert('回收站已空');
+  if (!confirm('⚠️ 确定清空回收站？\n\n所有内容将被彻底删除，无法恢复。')) return;
+  recycleItems.forEach(it => {
+    if (it.type === 'special' || it.type === 'custom'){
+      recycleBanned.add(it.type === 'special' ? it.data.achId : it.data.id);
+    }
+  });
+  saveSet(K.RECYCLE_BANNED, recycleBanned);
+  recycleItems = [];
+  saveJSON(K.RECYCLE, recycleItems);
+  updateRecycleBadge();
+  openRecycleModal();
+};
+
+/* ========== 永远怀念 ========== */
+function formatTime(ts){
+  const d = new Date(ts), pad = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+function renderMournList(){
+  const list = $('mournList');
+  if (!mournRecords.length) list.innerHTML = '<div class="empty" style="padding:16px;font-size:12px">暂无记录</div>';
+  else {
+    const sorted = [...mournRecords].sort((a, b) => b.ts - a.ts);
+    list.innerHTML = sorted.map(r => `
+      <div class="mourn-item" data-id="${r.id}">
+        ${r.withTime ? `<span class="mourn-item-time">${esc(formatTime(r.ts))}</span>` : ''}
+        <span class="mourn-item-text">${esc(r.text)}${r.showInDanmaku ? '<span class="mourn-danmaku-badge">📢弹幕</span>' : ''}</span>
+        <span class="mourn-item-del" data-id="${r.id}">×</span>
+      </div>`).join('');
+  }
+  $('mournCounter').textContent = `📝 已记录 ${mournRecords.length} 条`;
+  list.querySelectorAll('.mourn-item-del').forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.id;
+      const item = mournRecords.find(r => String(r.id) === String(id));
+      if (!item) return;
+      if (!confirm('删除这条记录？\n（将进入回收站）')) return;
+      addToRecycle({
+        type: 'mourn', icon: '🕯️',
+        name: item.text.slice(0, 20) + (item.text.length > 20 ? '…' : ''),
+        desc: '怀念记录 · ' + formatTime(item.ts),
+        data: item
+      });
+      mournRecords = mournRecords.filter(r => String(r.id) !== String(id));
+      saveJSON(K.MOURN, mournRecords);
+      renderMournList();
+      checkSpecialAchievements();
+    };
+  });
+}
+function renderPrayUnlock(){
+  if (prayCount >= 200){ $('mournCustomPanel').classList.add('show'); renderCustomDanmaku(); }
+  else $('mournCustomPanel').classList.remove('show');
+}
+function renderCustomDanmaku(){
+  const list = $('mournCustomList');
+  list.innerHTML = customDanmaku.map((d, i) => `
+    <div class="mourn-custom-item">
+      <input type="text" value="${esc(d)}" data-idx="${i}" maxlength="50">
+      <button data-idx="${i}" class="del-danmaku">删除</button>
+    </div>`).join('');
+  list.querySelectorAll('input').forEach(inp => {
+    inp.onchange = () => { const idx = +inp.dataset.idx; customDanmaku[idx] = inp.value.trim() || customDanmaku[idx]; saveJSON(K.CUSTOM_DANMAKU, customDanmaku); };
+  });
+  list.querySelectorAll('.del-danmaku').forEach(btn => {
+    btn.onclick = () => {
+      const idx = +btn.dataset.idx;
+      customDanmaku.splice(idx, 1);
+      if (!customDanmaku.length) customDanmaku = [...DEFAULT_DANMAKU];
+      saveJSON(K.CUSTOM_DANMAKU, customDanmaku); renderCustomDanmaku();
+    };
+  });
+  $('btnMournCustomAdd').disabled = customDanmaku.length >= 10;
+}
+
+/* ========== 弹幕 ========== */
+const DANMAKU_TRACKS = 12;
+let danmakuTrackStatus = new Array(DANMAKU_TRACKS).fill(0);
+let danmakuQueue = [], danmakuProcessing = false;
+const DANMAKU_INTERVAL = 400;
+function pickDanmakuTrack(){
+  let bestIdx = 0, bestTime = Infinity;
+  for (let i = 0; i < DANMAKU_TRACKS; i++) if (danmakuTrackStatus[i] < bestTime){ bestTime = danmakuTrackStatus[i]; bestIdx = i; }
+  danmakuTrackStatus[bestIdx] = Date.now();
+  return bestIdx;
+}
+function queueDanmaku(text, isMourn){
+  if (danmakuQueue.length >= 20) return;
+  danmakuQueue.push({ text, isMourn: !!isMourn });
+  if (!danmakuProcessing) processDanmakuQueue();
+}
+function processDanmakuQueue(){
+  if (!danmakuQueue.length){ danmakuProcessing = false; return; }
+  danmakuProcessing = true;
+  const item = danmakuQueue.shift();
+  fireDanmaku(item.text, item.isMourn);
+  setTimeout(processDanmakuQueue, DANMAKU_INTERVAL);
+}
+function fireDanmaku(text, isMourn){
+  const layer = $('danmakuLayer');
+  const el = document.createElement('div');
+  el.className = 'danmaku-item' + (isMourn ? ' mourn-danmaku' : '');
+  el.style.top = (4 + (pickDanmakuTrack() / DANMAKU_TRACKS) * 84) + 'vh';
+  if (!isMourn){
+    const colors = ['#334155','#475569','#64748b','#7c3aed','#be185d','#0e7490'];
+    el.style.color = colors[Math.floor(Math.random() * colors.length)];
+  }
+  const duration = Math.max(6, Math.min(11, 6 + text.length * 0.12));
+  el.style.animationDuration = duration + 's';
+  el.textContent = text;
+  layer.appendChild(el);
+  setTimeout(() => el.remove(), duration * 1000 + 200);
+}
+function addRandomSadEmoji(text){
+  const emoji = SAD_EMOJIS[Math.floor(Math.random() * SAD_EMOJIS.length)];
+  const pos = Math.floor(Math.random() * (text.length + 1));
+  return text.slice(0, pos) + emoji + text.slice(pos);
+}
+function fireDanmakuBurst(){
+  const withEmoji = $('mournWithEmoji').checked;
+  const danmakuMourns = mournRecords.filter(r => r.showInDanmaku);
+  const count = 3 + Math.floor(Math.random() * 3);
+  for (let i = 0; i < count; i++){
+    let text, isMourn = false;
+    if (danmakuMourns.length > 0 && Math.random() < 0.7){
+      const m = danmakuMourns[Math.floor(Math.random() * danmakuMourns.length)];
+      text = m.withTime ? formatTime(m.ts) + ' ' + m.text : m.text;
+      isMourn = true;
+    } else {
+      text = customDanmaku[Math.floor(Math.random() * customDanmaku.length)];
+      if (withEmoji) text = addRandomSadEmoji(text);
+    }
+    queueDanmaku(text, isMourn);
+  }
+}
+
+/* ========== 成就数据 ========== */
+const ACHIEVEMENTS = [
+  { id:'a10', threshold:10, name:'初露锋芒', icon:'🌱', desc:'完成度达到 10%' },
+  { id:'a20', threshold:20, name:'渐入佳境', icon:'🌿', desc:'完成度达到 20%' },
+  { id:'a50', threshold:50, name:'半壁江山', icon:'🌳', desc:'完成度达到 50%' },
+  { id:'a90', threshold:90, name:'登峰造极', icon:'🏆', desc:'完成度达到 90%' },
+  { id:'a99', threshold:99, name:'只差一步', icon:'👑', desc:'完成度达到 99%' },
+  { id:'a100', threshold:100, name:'蓝宝石收藏家', icon:'💎', desc:'完成度达到 100%' }
+];
+const HIDDEN_ACHIEVEMENTS = [
+  { id:'h_even1', name:'对对碰小白', icon:'🎲', desc:'收集到一个偶数', type:'even', count:1 },
+  { id:'h_even5', name:'对对碰学徒', icon:'🎯', desc:'收集到五个偶数', type:'even', count:5 },
+  { id:'h_even10', name:'对对碰达人', icon:'🧮', desc:'收集到十个偶数', type:'even', count:10 },
+  { id:'h_even30', name:'对对碰大师', icon:'🔢', desc:'收集到三十个偶数', type:'even', count:30 },
+  { id:'h_even50', name:'对对碰宗师', icon:'🧠', desc:'收集到五十个偶数', type:'even', count:50 },
+  { id:'h_even100', name:'对对碰传奇', icon:'👽', desc:'收集到一百个偶数', type:'even', count:100 },
+  { id:'h_evenAll', name:'这也要复数吗老大', icon:'🤯', desc:'全表格所有收集数值均为偶数', type:'even', count:-1 },
+  { id:'m3_1', name:'三消？！', icon:'🎰', desc:'收集到一个3的倍数', type:'m3', count:1 },
+  { id:'m3_5', name:'三消小成', icon:'🕹️', desc:'收集到五个3的倍数', type:'m3', count:5 },
+  { id:'m3_10', name:'三消达人', icon:'🎮', desc:'收集到十个3的倍数', type:'m3', count:10 },
+  { id:'m3_30', name:'三消大师', icon:'🧩', desc:'收集到三十个3的倍数', type:'m3', count:30 },
+  { id:'m3_50', name:'三消宗师', icon:'🌀', desc:'收集到五十个3的倍数', type:'m3', count:50 },
+  { id:'m3_100', name:'三消传奇', icon:'🛸', desc:'收集到一百个3的倍数', type:'m3', count:100 },
+  { id:'m3_All', name:'清场？！', icon:'🧹', desc:'全表格所有收集数值均为3的倍数', type:'m3', count:-1 },
+  { id:'gem_1', name:'是亮晶晶！', icon:'✨', desc:'蓝色300w特殊格数值达到1', type:'gem', count:1 },
+  { id:'gem_10', name:'我要戴十个！', icon:'👑', desc:'蓝色300w特殊格数值达到10', type:'gem', count:10 },
+  { id:'h_game', name:'游戏我只玩____', icon:'🎮', desc:'蛛播严选', type:'game', count:20 }
+];
+const MOURN_ACHIEVEMENTS = [
+  { id:'mourn_1', count:1, name:'你还是没忘记ta', icon:'🕯️', desc:'记录 1 条怀念' },
+  { id:'mourn_5', count:5, name:'念念不忘', icon:'💭', desc:'记录 5 条怀念' },
+  { id:'mourn_10', count:10, name:'思念成疾', icon:'💔', desc:'记录 10 条怀念' },
+  { id:'mourn_20', count:20, name:'刻骨铭心', icon:'🖤', desc:'记录 20 条怀念' },
+  { id:'mourn_50', count:50, name:'此生不渝', icon:'🌧️', desc:'记录 50 条怀念' },
+  { id:'mourn_100', count:100, name:'永远怀念', icon:'😭', desc:'记录 100 条怀念' }
+];
+const PRAY_ACHIEVEMENTS = [
+  { id:'pray_100', count:100, name:'😇', icon:'😇', desc:'祈祷 100 次' },
+  { id:'pray_300', count:300, name:'虔诚祈祷', icon:'🙏', desc:'祈祷 300 次' },
+  { id:'pray_500', count:500, name:'心诚则灵', icon:'🕊️', desc:'祈祷 500 次' },
+  { id:'pray_1000', count:1000, name:'万念归一', icon:'☯️', desc:'祈祷 1000 次' },
+  { id:'pray_10000', count:10000, name:'超脱凡尘', icon:'🌟', desc:'祈祷 10000 次' }
+];
+const SPECIAL_ACHIEVEMENTS = [
+  { id:'special_pitiful', name:'可怜死了', icon:'🥺', desc:'记录达到10条且祈祷数达到100' },
+  { id:'special_mystery_input', name:'神秘的输入框增加了！', icon:'🎁', desc:'点击？？？三次' },
+  { id:'special_train', name:'小火车怎么叫', icon:'🚂', desc:'卡七卡七卡七' },
+  { id:'special_restock', name:'来进货了', icon:'📦', desc:'输入数值大于100' }
+];
+const TASK_ACHIEVEMENTS = [
+  { id:'task_set_1', count:1, name:'任务开始', icon:'📝', desc:'设定 1 次任务' },
+  { id:'task_set_5', count:5, name:'任务小成', icon:'📋', desc:'设定 5 次任务' },
+  { id:'task_set_10', count:10, name:'任务达人', icon:'📚', desc:'设定 10 次任务' },
+  { id:'task_set_50', count:50, name:'任务狂魔', icon:'🎯', desc:'设定 50 次任务' },
+  { id:'task_set_100', count:100, name:'任务之神', icon:'🌠', desc:'设定 100 次任务' },
+  { id:'task_done_1', count:1, name:'初次完成', icon:'✅', desc:'完成 1 次任务' },
+  { id:'task_done_5', count:5, name:'小有所成', icon:'⭐', desc:'完成 5 次任务' },
+  { id:'task_done_10', count:10, name:'成就满满', icon:'🌟', desc:'完成 10 次任务' },
+  { id:'task_done_50', count:50, name:'任务大师', icon:'💫', desc:'完成 50 次任务' },
+  { id:'task_done_100', count:100, name:'完美任务', icon:'🏅', desc:'完成 100 次任务' }
+];
+
+let unlockedAchievements = loadSet(K.ACH);
+let unlockedHiddenAchievements = loadSet(K.HIDDEN_ACH);
+let unlockedMournAchievements = loadSet(K.MOURN_ACH);
+let unlockedPrayAchievements = loadSet(K.PRAY_ACH);
+let unlockedSpecialAchievements = loadSet(K.SPECIAL_ACH);
+let unlockedTaskAchievements = loadSet(K.TASK_ACH);
+
+let mysteryState = loadJSON(K.MYSTERY, { unlocked:false, count:0, lastTotal:0 });
+let customBadges = loadJSON(K.CUSTOM_BADGES, []);
+let badgeOrder = loadJSON(K.BADGE_ORDER, []);
+let pinnedBadgeId = loadJSON(K.PINNED_BADGE, null);
+let hiddenBadgeIds = loadSet(K.HIDDEN_BADGES);
+let showHiddenBadges = false;
+let mysteryClickCount = 0, mysteryClickTimer = null;
+
+const isBanned = id => recycleBanned.has(id);
+
+function computeTotalAchievements(){
+  let c = 0;
+  c += [...unlockedAchievements].filter(id => !isBanned(id)).length;
+  c += [...unlockedHiddenAchievements].filter(id => !isBanned(id)).length;
+  c += [...unlockedMournAchievements].filter(id => !isBanned(id)).length;
+  c += [...unlockedPrayAchievements].filter(id => !isBanned(id)).length;
+  c += [...unlockedTaskAchievements].filter(id => !isBanned(id)).length;
+  return c;
+}
+function checkMysteryProgress(){
+  const total = computeTotalAchievements();
+  let changed = false;
+  if (!mysteryState.unlocked){
+    if (total > 5){
+      mysteryState.unlocked = true; mysteryState.count = 1; mysteryState.lastTotal = total; changed = true;
+      showAchievementPopup([{ id:'mystery_???', type:'mystery', icon:'❓', name:'？？？', desc:'' }], 'mystery');
+    }
+  } else if (total > mysteryState.lastTotal){
+    mysteryState.count += (total - mysteryState.lastTotal); mysteryState.lastTotal = total; changed = true;
+  } else if (total < mysteryState.lastTotal){
+    mysteryState.lastTotal = total; changed = true;
+  }
+  if (changed) saveJSON(K.MYSTERY, mysteryState);
+}
+function handleMysteryClick(){
+  if (!mysteryState.unlocked) return;
+  if (mysteryState.count <= 0){ alert('？？？数量为 0，无法创建自定义徽章'); return; }
+  mysteryClickCount++;
+  clearTimeout(mysteryClickTimer);
+  mysteryClickTimer = setTimeout(() => { mysteryClickCount = 0; }, 2000);
+  if (mysteryClickCount >= 3){
+    mysteryClickCount = 0; clearTimeout(mysteryClickTimer);
+    if (!unlockedSpecialAchievements.has('special_mystery_input')){
+      unlockedSpecialAchievements.add('special_mystery_input');
+      saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
+      showAchievementPopup([{ id:'special_mystery_input', type:'special', icon:'🎁', name:'神秘的输入框增加了！', desc:'自定义徽章功能已解锁' }], 'special');
+    }
+    openCustomBadgeCreator();
+  }
+}
+let editingCustomBadgeId = null;
+function openCustomBadgeCreator(editId){
+  editingCustomBadgeId = editId || null;
+  if (editId){
+    const b = customBadges.find(x => x.id === editId); if (!b) return;
+    $('customBadgeTitle').textContent = '✏️ 编辑自定义徽章';
+    $('customBadgeIcon').value = b.icon; $('customBadgeName').value = b.name; $('customBadgeDesc').value = b.desc;
+    $('customBadgeConfirm').textContent = '保存';
+  } else {
+    $('customBadgeTitle').textContent = '✨ 创建自定义徽章';
+    $('customBadgeIcon').value = '✨'; $('customBadgeName').value = ''; $('customBadgeDesc').value = '';
+    $('customBadgeConfirm').textContent = '创建';
+  }
+  updateCustomPreview(); $('customBadgeModal').classList.add('show');
+}
+function updateCustomPreview(){
+  $('previewIcon').textContent = $('customBadgeIcon').value.trim() || '✨';
+  $('previewName').textContent = $('customBadgeName').value.trim() || '我的勋章';
+  $('previewDesc').textContent = $('customBadgeDesc').value.trim() || '简短描述';
+}
+['customBadgeIcon','customBadgeName','customBadgeDesc'].forEach(id => $(id).addEventListener('input', updateCustomPreview));
+$('customBadgeCancel').onclick = () => { $('customBadgeModal').classList.remove('show'); editingCustomBadgeId = null; };
+$('customBadgeConfirm').onclick = () => {
+  const icon = $('customBadgeIcon').value.trim(), name = $('customBadgeName').value.trim(), desc = $('customBadgeDesc').value.trim();
+  if (!icon) return alert('请填写图标');
+  if (!name) return alert('请填写名称');
+  if (name.length > 10) return alert('名称最多10个字');
+  if (editingCustomBadgeId){
+    const b = customBadges.find(x => x.id === editingCustomBadgeId);
+    if (b){ b.icon = icon; b.name = name; b.desc = desc || '自定义徽章'; }
+    saveJSON(K.CUSTOM_BADGES, customBadges);
+  } else {
+    if (mysteryState.count <= 0){ alert('？？？数量不足'); return; }
+    mysteryState.count--; saveJSON(K.MYSTERY, mysteryState);
+    const newId = 'custom_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+    customBadges.push({ id:newId, icon, name, desc: desc || '自定义徽章' });
+    saveJSON(K.CUSTOM_BADGES, customBadges);
+  }
+  $('customBadgeModal').classList.remove('show'); editingCustomBadgeId = null; renderAllAchievements();
+};
+
+/* ========== 任务 ========== */
+let tasks = loadJSON(K.TASKS, []);
+let taskStats = loadJSON(K.TASK_STATS, { set:0, completed:0 });
+
+function renderTasks(){
+  const list = $('taskList');
+  const pending = tasks.filter(t => !t.completed);
+  const badge = $('taskBadge');
+  if (pending.length > 0){ badge.style.display = 'inline-block'; badge.textContent = pending.length; }
+  else badge.style.display = 'none';
+  if (!tasks.length) list.innerHTML = '<div class="task-empty">暂无任务</div>';
+  else {
+    const sorted = [...tasks].sort((a,b) => (a.completed - b.completed) || (b.ts - a.ts));
+    list.innerHTML = sorted.map(t => {
+      const text = `${t.price}-${t.chain}-${t.fire}-${t.clarity} (${t.color})`;
+      return `<div class="task-item ${t.completed ? 'done' : ''}" data-id="${t.id}">
+        <span class="task-item-text">${esc(text)}</span>
+        ${!t.completed ? `<button class="task-item-btn" data-id="${t.id}">完成</button>` : ''}
+      </div>`;
+    }).join('');
+  }
+  $('taskStats').textContent = `已设定 ${taskStats.set} 次 · 已完成 ${taskStats.completed} 次`;
+  list.querySelectorAll('.task-item-btn').forEach(btn => { btn.onclick = e => { e.stopPropagation(); completeTask(btn.dataset.id); }; });
+  list.querySelectorAll('.task-item').forEach(el => {
+    let pressTimer = null;
+    const start = () => { pressTimer = setTimeout(() => {
+      pressTimer = null;
+      const task = tasks.find(t => String(t.id) === String(el.dataset.id));
+      if (!task) return;
+      if (!confirm('删除这条任务？\n（将进入回收站）')) return;
+      addToRecycle({
+        type: 'task', icon: '📋',
+        name: `${task.price}-${task.chain}-${task.fire}-${task.clarity} (${task.color})`,
+        desc: task.completed ? '已完成任务' : '未完成任务',
+        data: task
+      });
+      tasks = tasks.filter(t => String(t.id) !== String(task.id));
+      saveJSON(K.TASKS, tasks);
+      renderTasks();
+    }, 700); };
+    const cancel = () => { if (pressTimer){ clearTimeout(pressTimer); pressTimer = null; } };
+    el.addEventListener('touchstart', start, { passive:true });
+    el.addEventListener('touchend', cancel);
+    el.addEventListener('touchmove', cancel);
+    el.addEventListener('mousedown', start);
+    el.addEventListener('mouseup', cancel);
+    el.addEventListener('mouseleave', cancel);
+  });
+}
+function addTask(){
+  if (!rows.length) return alert('请先导入表格');
+  const color = $('taskColor').value, price = $('taskPrice').value, chain = $('taskChain').value, fire = $('taskFire').value, clarity = $('taskClarity').value;
+  if (!color || !price || !chain || !fire || !clarity) return alert('请选择完整信息');
+  const rowName = `${price}-${chain}-${fire}-${clarity}`;
+  if (!rows.includes(rowName) || !cols.includes(color)) return alert(`未找到 行"${rowName}" 或 列"${color}"`);
+  tasks.push({ id: Date.now() + Math.random().toString(36).slice(2,6), color, price, chain, fire, clarity, completed:false, ts: Date.now() });
+  taskStats.set++;
+  saveJSON(K.TASKS, tasks); saveJSON(K.TASK_STATS, taskStats);
+  renderTasks(); checkTaskAchievements();
+}
+function completeTask(taskId){
+  const task = tasks.find(t => String(t.id) === String(taskId));
+  if (!task || task.completed) return;
+  const doImport = confirm(`任务：${task.price}-${task.chain}-${task.fire}-${task.clarity} (${task.color})\n\n是否将其作为新收集导入表格？`);
+  if (doImport) executeAddCollection(task.color, task.price, task.chain, task.fire, task.clarity, 1, true);
+  task.completed = true; task.completedAt = Date.now(); taskStats.completed++;
+  saveJSON(K.TASKS, tasks); saveJSON(K.TASK_STATS, taskStats);
+  renderTasks(); checkTaskAchievements();
+}
+function checkTaskAchievements(){
+  const newOnes = [];
+  for (const a of TASK_ACHIEVEMENTS){
+    if (unlockedTaskAchievements.has(a.id) || isBanned(a.id)) continue;
+    if (a.id.startsWith('task_set_') && taskStats.set >= a.count){ unlockedTaskAchievements.add(a.id); newOnes.push({...a, type:'task'}); }
+    if (a.id.startsWith('task_done_') && taskStats.completed >= a.count){ unlockedTaskAchievements.add(a.id); newOnes.push({...a, type:'task'}); }
+  }
+  if (newOnes.length){ saveSet(K.TASK_ACH, unlockedTaskAchievements); showAchievementPopup(newOnes, 'hidden'); }
+  checkMysteryProgress(); renderAllAchievements();
+}
+
+/* ========== 徽章集合 ========== */
+function getAllUnlockedBadges(){
+  const badges = [];
+  for (const a of ACHIEVEMENTS) if (unlockedAchievements.has(a.id) && !isBanned(a.id)) badges.push({ id:a.id, type:'normal', icon:a.icon, name:a.name, desc:a.desc, subText:a.threshold + '%' });
+  for (const a of HIDDEN_ACHIEVEMENTS){
+    if (unlockedHiddenAchievements.has(a.id) && !isBanned(a.id)){
+      let subText = '隐藏';
+      if (a.type === 'gem' && a.id === 'gem_1') subText = `× ${gemCount}`;
+      badges.push({ id:a.id, type:a.type === 'gem' ? 'gem' : 'hidden', icon:a.icon, name:a.name, desc:a.desc, subText });
+    }
+  }
+  for (const a of MOURN_ACHIEVEMENTS) if (unlockedMournAchievements.has(a.id) && !isBanned(a.id)) badges.push({ id:a.id, type:'mourn', icon:a.icon, name:a.name, desc:a.desc, subText:`× ${mournRecords.length}` });
+  for (const a of PRAY_ACHIEVEMENTS) if (unlockedPrayAchievements.has(a.id) && !isBanned(a.id)) badges.push({ id:a.id, type:'mourn', icon:a.icon, name:a.name, desc:a.desc, subText:`× ${prayCount}` });
+  for (const a of SPECIAL_ACHIEVEMENTS) if (unlockedSpecialAchievements.has(a.id) && !isBanned(a.id)) badges.push({ id:a.id, type:'special', icon:a.icon, name:a.name, desc:a.desc, subText:'特殊' });
+  for (const a of TASK_ACHIEVEMENTS){
+    if (unlockedTaskAchievements.has(a.id) && !isBanned(a.id)){
+      const subText = a.id.startsWith('task_set_') ? `设 ${taskStats.set}` : `完 ${taskStats.completed}`;
+      badges.push({ id:a.id, type:'task', icon:a.icon, name:a.name, desc:a.desc, subText });
+    }
+  }
+  if (mysteryState.unlocked && !isBanned('mystery_???')) badges.push({ id:'mystery_???', type:'mystery', icon:'❓', name:'？？？', desc:'', subText:`× ${mysteryState.count}` });
+  for (const cb of customBadges) if (!isBanned(cb.id)) badges.push({ id:cb.id, type:'custom', icon:cb.icon, name:cb.name, desc:cb.desc, subText:'自定义' });
+  return badges;
+}
+function getOrderedBadges(){
+  const badges = getAllUnlockedBadges().filter(b => showHiddenBadges || !hiddenBadgeIds.has(b.id));
+  badges.sort((a, b) => {
+    const ai = badgeOrder.indexOf(a.id), bi = badgeOrder.indexOf(b.id);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+  if (pinnedBadgeId){
+    const idx = badges.findIndex(b => b.id === pinnedBadgeId);
+    if (idx > 0){ const [p] = badges.splice(idx, 1); badges.unshift(p); }
+  }
+  return badges;
+}
+function moveBadge(id, direction){
+  const badges = getAllUnlockedBadges();
+  badges.sort((a, b) => {
+    const ai = badgeOrder.indexOf(a.id), bi = badgeOrder.indexOf(b.id);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+  const idx = badges.findIndex(b => b.id === id);
+  if (idx === -1) return;
+  const newIdx = direction === 'up' ? idx - 1 : idx + 1;
+  if (newIdx < 0 || newIdx >= badges.length) return;
+  const newOrder = badges.map(b => b.id);
+  [newOrder[idx], newOrder[newIdx]] = [newOrder[newIdx], newOrder[idx]];
+  badgeOrder = newOrder; saveJSON(K.BADGE_ORDER, badgeOrder); renderAllAchievements();
+}
+function renderAllAchievements(){
+  const badges = getOrderedBadges();
+  const wall = $('badgeWall');
+  wall.innerHTML = badges.map(b => {
+    let cls = 'badge';
+    if (b.type === 'hidden') cls += ' hidden-ach';
+    else if (b.type === 'gem') cls += ' gem-ach';
+    else if (b.type === 'mourn') cls += ' mourn-ach';
+    else if (b.type === 'special') cls += ' special-ach';
+    else if (b.type === 'mystery') cls += ' mystery-badge';
+    else if (b.type === 'custom') cls += ' custom-badge';
+    else if (b.type === 'task') cls += ' task-ach';
+    cls += ' unlocked';
+    if (b.id === pinnedBadgeId) cls += ' pinned';
+    return `<div class="${cls}" data-badge-id="${esc(b.id)}">
+      <div class="icon">${b.icon}</div>
+      <div class="name">${esc(b.name)}</div>
+      <div class="pct">${esc(b.subText)}</div>
+    </div>`;
+  }).join('');
+  wall.querySelectorAll('.badge').forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.badgeId;
+      if (id === 'mystery_???') handleMysteryClick();
+      else openBadgeModal(id);
+    };
+  });
+  if (hiddenBadgeIds.size > 0){
+    $('showHiddenLink').style.display = 'block';
+    $('showHiddenLink').textContent = showHiddenBadges ? '🙈 隐藏已隐藏的勋章' : `👁️ 显示已隐藏的勋章（${hiddenBadgeIds.size}）`;
+  } else $('showHiddenLink').style.display = 'none';
+}
+$('showHiddenLink').onclick = () => { showHiddenBadges = !showHiddenBadges; renderAllAchievements(); };
+function openBadgeModal(badgeId){
+  const badge = getAllUnlockedBadges().find(b => b.id === badgeId);
+  if (!badge) return;
+  const isCustom = badge.type === 'custom';
+  const isSpecial = badge.type === 'special';
+  const isPinned = badgeId === pinnedBadgeId;
+  const isHidden = hiddenBadgeIds.has(badgeId);
+  const pinnedFeatureUnlocked = customBadges.length > 0;
+  const sortFeatureUnlocked = getAllUnlockedBadges().length > 8;
+  $('badgeModalBody').innerHTML = `
+    <div class="badge-modal-icon">${badge.icon}</div>
+    <div class="badge-modal-name">${esc(badge.name)}</div>
+    <div class="badge-modal-desc">${esc(badge.desc)}</div>`;
+  let actions = '';
+  if (badge.id !== 'mystery_???') actions += `<button data-action="hide">${isHidden ? '👁️ 取消隐藏' : '🙈 隐藏'}</button>`;
+  if (pinnedFeatureUnlocked && badge.id !== 'mystery_???') actions += `<button data-action="pin">${isPinned ? '取消置顶' : '📌 置顶'}</button>`;
+  if (sortFeatureUnlocked && badge.id !== 'mystery_???'){
+    actions += `<button data-action="up">⬆️ 上移</button>`;
+    actions += `<button data-action="down">⬇️ 下移</button>`;
+  }
+  if (isCustom){
+    actions += `<button data-action="edit">✏️ 编辑</button>`;
+    actions += `<button data-action="delete" class="danger">🗑️ 删除</button>`;
+  }
+  if (isSpecial) actions += `<button data-action="recycle" class="danger">🗑️ 删除</button>`;
+  $('badgeModalActions').innerHTML = actions;
+  $('badgeModalActions').querySelectorAll('button').forEach(btn => { btn.onclick = () => handleBadgeAction(btn.dataset.action, badgeId); });
+  $('badgeModal').classList.add('show');
+}
+function handleBadgeAction(action, badgeId){
+  if (action === 'hide'){
+    if (hiddenBadgeIds.has(badgeId)) hiddenBadgeIds.delete(badgeId);
+    else hiddenBadgeIds.add(badgeId);
+    saveSet(K.HIDDEN_BADGES, hiddenBadgeIds);
+  } else if (action === 'pin'){ pinnedBadgeId = (pinnedBadgeId === badgeId) ? null : badgeId; saveJSON(K.PINNED_BADGE, pinnedBadgeId); }
+  else if (action === 'up'){ moveBadge(badgeId, 'up'); }
+  else if (action === 'down'){ moveBadge(badgeId, 'down'); }
+  else if (action === 'edit'){ $('badgeModal').classList.remove('show'); openCustomBadgeCreator(badgeId); return; }
+  else if (action === 'delete'){
+    const b = customBadges.find(x => x.id === badgeId);
+    if (!b) return;
+    if (!confirm('删除这个自定义徽章？\n（将进入回收站）')){ $('badgeModal').classList.remove('show'); return; }
+    addToRecycle({ type: 'custom', icon: b.icon, name: b.name, desc: b.desc || '自定义徽章', data: b });
+    customBadges = customBadges.filter(x => x.id !== badgeId);
+    saveJSON(K.CUSTOM_BADGES, customBadges);
+    if (pinnedBadgeId === badgeId){ pinnedBadgeId = null; saveJSON(K.PINNED_BADGE, null); }
+    badgeOrder = badgeOrder.filter(id => id !== badgeId);
+    saveJSON(K.BADGE_ORDER, badgeOrder);
+    if (hiddenBadgeIds.has(badgeId)){ hiddenBadgeIds.delete(badgeId); saveSet(K.HIDDEN_BADGES, hiddenBadgeIds); }
+  } else if (action === 'recycle'){
+    const a = SPECIAL_ACHIEVEMENTS.find(x => x.id === badgeId);
+    if (!a) return;
+    if (!confirm(`删除特殊成就「${a.name}」？\n（将进入回收站）`)){ $('badgeModal').classList.remove('show'); return; }
+    addToRecycle({ type: 'special', icon: a.icon, name: a.name, desc: a.desc, data: { achId: badgeId } });
+    unlockedSpecialAchievements.delete(badgeId);
+    saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
+  }
+  $('badgeModal').classList.remove('show'); renderAllAchievements();
+}
+$('badgeModalClose').onclick = () => $('badgeModal').classList.remove('show');
+
+/* ========== 成就检测 ========== */
+function checkAchievements(pct){
+  const newOnes = [];
+  for (const a of ACHIEVEMENTS){
+    if (pct >= a.threshold && !unlockedAchievements.has(a.id) && !isBanned(a.id)){
+      unlockedAchievements.add(a.id); newOnes.push(a);
+    }
+  }
+  if (newOnes.length){ saveSet(K.ACH, unlockedAchievements); showAchievementPopup(newOnes, 'normal'); }
+  checkMysteryProgress(); renderAllAchievements();
+}
+function computeGemCount(){
+  if (!rows.length) return 0;
+  const cell = cellIndex.get(GEM_KEY);
+  if (!cell || cell.disabled || !cell.done) return 0;
+  const s = String(cell.value).trim();
+  if (!isNumeric(s)) return 0;
+  const n = parseFloat(s);
+  return (Number.isInteger(n) && n >= 0) ? n : 0;
+}
+function checkHiddenAchievements(){
+  if (!rows.length) return;
+  let evenCount = 0, m3Count = 0, doneCount = 0, nonNumeric = false, totalSum = 0;
+  for (const cell of cellIndex.values()){
+    if (cell.disabled || !cell.done) continue;
+    doneCount++;
+    const s = String(cell.value).trim();
+    if (!isNumeric(s)){ nonNumeric = true; continue; }
+    const num = parseFloat(s);
+    if (!Number.isInteger(num)){ nonNumeric = true; continue; }
+    totalSum += num;
+    if (num % 2 === 0) evenCount += Math.floor(num / 2);
+    else if (num % 3 === 0) m3Count += Math.floor(num / 3);
+  }
+  gemCount = computeGemCount();
+  const newHidden = [];
+  for (const a of HIDDEN_ACHIEVEMENTS){
+    if (unlockedHiddenAchievements.has(a.id) || isBanned(a.id)) continue;
+    if (a.type === 'gem'){ if (gemCount >= a.count){ unlockedHiddenAchievements.add(a.id); newHidden.push(a); } continue; }
+    if (a.type === 'game'){ if (totalSum > a.count){ unlockedHiddenAchievements.add(a.id); newHidden.push(a); } continue; }
+    const isAll = (a.count === -1);
+    const curCount = a.type === 'even' ? evenCount : m3Count;
+    if (isAll){ if (doneCount > 0 && curCount === doneCount && !nonNumeric){ unlockedHiddenAchievements.add(a.id); newHidden.push(a); } }
+    else { if (curCount >= a.count){ unlockedHiddenAchievements.add(a.id); newHidden.push(a); } }
+  }
+  if (newHidden.length){ saveSet(K.HIDDEN_ACH, unlockedHiddenAchievements); showAchievementPopup(newHidden, 'hidden'); }
+  checkMysteryProgress(); renderAllAchievements();
+}
+function checkMournAchievements(){
+  const newOnes = [];
+  for (const a of MOURN_ACHIEVEMENTS){
+    if (mournRecords.length >= a.count && !unlockedMournAchievements.has(a.id) && !isBanned(a.id)){
+      unlockedMournAchievements.add(a.id); newOnes.push({...a, type:'mourn'});
+    }
+  }
+  if (newOnes.length){ saveSet(K.MOURN_ACH, unlockedMournAchievements); showAchievementPopup(newOnes, 'hidden'); }
+  checkMysteryProgress(); renderAllAchievements();
+}
+function checkPrayAchievements(){
+  const newOnes = [];
+  for (const a of PRAY_ACHIEVEMENTS){
+    if (prayCount >= a.count && !unlockedPrayAchievements.has(a.id) && !isBanned(a.id)){
+      unlockedPrayAchievements.add(a.id); newOnes.push({...a, type:'pray'});
+    }
+  }
+  if (newOnes.length){ saveSet(K.PRAY_ACH, unlockedPrayAchievements); showAchievementPopup(newOnes, 'hidden'); }
+  checkMysteryProgress(); renderAllAchievements();
+}
+function checkSpecialAchievements(){
+  const newOnes = [];
+  if (mournRecords.length >= 10 && prayCount >= 100 && !unlockedSpecialAchievements.has('special_pitiful') && !isBanned('special_pitiful')){
+    const a = SPECIAL_ACHIEVEMENTS.find(x => x.id === 'special_pitiful');
+    unlockedSpecialAchievements.add('special_pitiful'); newOnes.push({...a, type:'special'});
+  }
+  if (!unlockedSpecialAchievements.has('special_train') && !isBanned('special_train')){
+    const priceCount = {};
+    for (const r of rows){
+      const price = r.split('-')[0];
+      for (const c of cols){
+        const cell = cellIndex.get(KEY(r, c));
+        if (!cell || cell.disabled || !cell.done) continue;
+        priceCount[price] = (priceCount[price] || 0) + 1;
+      }
+    }
+    if (Object.values(priceCount).some(v => v >= 7)){
+      const a = SPECIAL_ACHIEVEMENTS.find(x => x.id === 'special_train');
+      unlockedSpecialAchievements.add('special_train'); newOnes.push({...a, type:'special'});
+    }
+  }
+  if (newOnes.length){ saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements); showAchievementPopup(newOnes, 'special'); }
+  checkMysteryProgress(); renderAllAchievements();
+}
+
+function showAchievementPopup(list, type){
+  const hasSpecial = type === 'special' || list.some(a => a.type === 'special');
+  const hasMystery = type === 'mystery' || list.some(a => a.type === 'mystery');
+  const hasHidden = list.some(a => ['gem','mourn','pray','hidden','task'].includes(a.type));
+  if (hasMystery){ $('achTitle').textContent = '❓ 神秘存在出现！'; $('achTitle').className = 'ach-title mystery-title'; }
+  else if (hasSpecial){ $('achTitle').textContent = '🔮 隐藏成就解锁！'; $('achTitle').className = 'ach-title special-title'; }
+  else if (hasHidden){ $('achTitle').textContent = '🔮 隐藏成就解锁！'; $('achTitle').className = 'ach-title hidden-title'; }
+  else { $('achTitle').textContent = '🎉 成就解锁！'; $('achTitle').className = 'ach-title'; }
+  $('achList').innerHTML = list.map(a => {
+    let cls = 'ach-item';
+    if (a.type === 'special') cls += ' special-ach';
+    else if (a.type === 'gem') cls += ' gem-ach';
+    else if (a.type === 'mourn' || a.type === 'pray') cls += ' mourn-ach';
+    else if (a.type === 'mystery') cls += ' mystery-ach';
+    else if (a.type === 'task') cls += ' task-ach';
+    else if (a.type === 'hidden') cls += ' hidden-ach';
+    let desc = a.desc;
+    if (a.id === 'gem_1') desc = `当前数值：${gemCount}`;
+    if (a.type === 'mourn') desc = `已记录 ${mournRecords.length} 条`;
+    if (a.type === 'pray') desc = `已祈祷 ${prayCount} 次`;
+    if (a.id === 'special_pitiful') desc = `记录 ${mournRecords.length} 条 · 祈祷 ${prayCount} 次`;
+    if (a.id === 'mystery_???') desc = '';
+    if (a.type === 'task') desc = a.id.startsWith('task_set_') ? `已设定 ${taskStats.set} 次任务` : `已完成 ${taskStats.completed} 次任务`;
+    return `<div class="${cls}">
+      <div class="icon">${a.icon}</div>
+      <div class="info">
+        <div class="name">${esc(a.name)}</div>
+        ${desc ? `<div class="desc">${esc(desc)}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  $('achievementModal').classList.add('show');
+}
+$('achCloseBtn').onclick = () => $('achievementModal').classList.remove('show');
+
+$('resetBadgeBtn').onclick = () => {
+  if (confirm('确定要重置所有勋章记录吗？（不影响表格数据、怀念记录、祈祷次数、自定义徽章、任务和？？？）')){
+    unlockedAchievements = new Set();
+    unlockedHiddenAchievements = new Set();
+    unlockedMournAchievements = new Set();
+    unlockedPrayAchievements = new Set();
+    unlockedTaskAchievements = new Set();
+    const keepSpecial = new Set();
+    if (unlockedSpecialAchievements.has('special_mystery_input')) keepSpecial.add('special_mystery_input');
+    unlockedSpecialAchievements = keepSpecial;
+    mysteryState.lastTotal = computeTotalAchievements();
+    saveJSON(K.MYSTERY, mysteryState);
+    saveSet(K.ACH, unlockedAchievements); saveSet(K.HIDDEN_ACH, unlockedHiddenAchievements);
+    saveSet(K.MOURN_ACH, unlockedMournAchievements); saveSet(K.PRAY_ACH, unlockedPrayAchievements);
+    saveSet(K.TASK_ACH, unlockedTaskAchievements); saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
+    renderAllAchievements();
+  }
+};
+
+/* ========== 初始化 ========== */
+$('btnInitAll').onclick = () => {
+  if (!confirm('⚠️ 危险操作！\n\n这将清空所有数据：\n· 表格数据\n· 所有成就和勋章\n· 怀念记录和祈祷次数\n· 自定义徽章和弹幕\n· 任务记录\n· 回收站\n· ？？？状态\n\n确定要继续吗？')) return;
+  if (!confirm('⚠️ 最终确认！\n\n数据无法恢复，真的要初始化吗？')) return;
+  Object.values(K).forEach(key => { try { localStorage.removeItem(key); } catch(e){} });
+  alert('✅ 已恢复到初始状态');
+  location.reload();
+};
+
+function isNumeric(s){ return /^-?\d+(\.\d+)?$/.test(String(s).trim()); }
+function isEvenValue(v){ const s = String(v).trim(); if (!isNumeric(s)) return false; const n = parseFloat(s); return Number.isInteger(n) && n % 2 === 0; }
+function isMultiple3Value(v){ const s = String(v).trim(); if (!isNumeric(s)) return false; const n = parseFloat(s); return Number.isInteger(n) && n % 3 === 0; }
+
+let rows = [], cols = [], collectedMap = new Map(), cellIndex = new Map();
+
+function readFileAB(file){ return new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = () => rej(fr.error); fr.readAsArrayBuffer(file); }); }
+function parseCSV(text){
+  text = text.replace(/^\uFEFF/, '');
+  const out = []; let cur = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++){
+    const ch = text[i];
+    if (inQ){
+      if (ch === '"'){ if (text[i+1] === '"'){ field += '"'; i++; } else inQ = false; }
+      else field += ch;
+    } else {
+      if (ch === '"') inQ = true;
+      else if (ch === ','){ cur.push(field); field = ''; }
+      else if (ch === '\n'){ cur.push(field); out.push(cur); cur = []; field = ''; }
+      else if (ch === '\r'){}
+      else field += ch;
+    }
+  }
+  if (field !== '' || cur.length){ cur.push(field); out.push(cur); }
+  return out;
+}
+async function readTable(file){
+  const name = file.name.toLowerCase();
+  const ab = await readFileAB(file);
+  if (name.endsWith('.csv')) return parseCSV(new TextDecoder('utf-8').decode(ab));
+  if (typeof XLSX === 'undefined') throw new Error('Excel 解析库未加载，请改用 CSV 文件');
+  const wb = XLSX.read(new Uint8Array(ab), { type:'array' });
+  const ws = wb.Sheets[wb.SheetNames[0]];
+  return XLSX.utils.sheet_to_json(ws, { header:1, defval:'', raw:false, blankrows:false });
+}
+async function importFile(file){
+  try {
+    const arr = await readTable(file);
+    const headRow = arr[0] || [];
+    const colIndices = [];
+    for (let j = 0; j < headRow.length; j++){
+      const n = String(headRow[j] ?? '').trim();
+      if (TARGET_COLS.includes(n)) colIndices.push({ index:j, name:n });
+    }
+    if (!colIndices.length) throw new Error('未找到目标列（红、蓝、绿、黄、紫）');
+    cols = colIndices.map(c => c.name);
+    const outRows = [];
+    for (let i = 1; i < arr.length; i++){
+      const rowData = arr[i] || [];
+      const firstCol = String(rowData[0] ?? '').trim();
+      if (firstCol === '总计') continue;
+      const rowName = rowData.length >= 4
+        ? [String(rowData[0]??'').trim(), String(rowData[1]??'').trim(), String(rowData[2]??'').trim(), String(rowData[3]??'').trim()].filter(Boolean).join('-')
+        : firstCol;
+      if (rowName) outRows.push({ name:rowName, rowData });
+    }
+    rows = outRows.map(r => r.name);
+    const map = new Map();
+    const colIndexMap = {}; colIndices.forEach(c => { colIndexMap[c.name] = c.index; });
+    for (const { name, rowData } of outRows){
+      for (const col of cols){
+        const idx = colIndexMap[col];
+        if (idx === undefined) continue;
+        const v = String(rowData[idx] ?? '').trim();
+        if (v !== '' && !isDisabledCell(name, col)) map.set(KEY(name, col), v);
+      }
+    }
+    collectedMap = map;
+    $('importInfo').textContent = `${file.name} ｜ ${rows.length} 行 × ${cols.length} 列 ｜ ${map.size} 条已有数据`;
+    refreshAddOptions(); refreshTaskOptions(); rebuild();
+  } catch (e){ alert('导入失败：' + e.message); }
+}
+function rebuild(){
+  cellIndex.clear();
+  for (const r of rows) for (const c of cols){
+    const k = KEY(r, c);
+    if (isDisabledCell(r, c)) cellIndex.set(k, { r, c, done:false, value:'', disabled:true, gem:false });
+    else { const v = collectedMap.get(k); cellIndex.set(k, { r, c, done:v !== undefined, value:v === undefined ? '' : v, disabled:false, gem:isGemCell(r, c) }); }
+  }
+  updateStats(); renderTable();
+}
+function isRowComplete(r){
+  let anyEnabled = false;
+  for (const c of cols){
+    const cell = cellIndex.get(KEY(r, c));
+    if (cell.disabled) continue;
+    anyEnabled = true;
+    if (!cell.done) return false;
+  }
+  return anyEnabled;
+}
+function updateStats(){
+  let total = 0, done = 0;
+  for (const cell of cellIndex.values()){ if (cell.disabled) continue; total++; if (cell.done) done++; }
+  const blank = total - done, pct = total ? (done / total * 100) : 0;
+  $('stats').innerHTML = `
+    <div class="card"><div class="num">${total}</div><div class="lab">总格数</div></div>
+    <div class="card"><div class="num" style="color:#1c7a4a">${done}</div><div class="lab">已收集</div></div>
+    <div class="card"><div class="num" style="color:#c0392b">${blank}</div><div class="lab">空白格</div></div>
+    <div class="card"><div class="num">${pct.toFixed(1)}%</div><div class="lab">完成率</div></div>`;
+  $('bar').style.width = pct + '%';
+  checkAchievements(pct); checkHiddenAchievements(); checkSpecialAchievements();
+}
+function renderTable(){
+  const box = $('tablebox');
+  if (!rows.length){ box.innerHTML = '<div class="empty">请先导入表格</div>'; return; }
+  const kw = $('search').value.trim().toLowerCase(), mode = $('filter').value;
+  const parts = ['<table><thead><tr><th class="corner">行 \\ 列</th>'];
+  for (const c of cols) parts.push(`<th>${esc(c)}</th>`);
+  parts.push('</tr></thead><tbody>');
+  for (const r of rows){
+    const rowHit = kw && r.toLowerCase().includes(kw);
+    const rowComplete = isRowComplete(r);
+    parts.push('<tr>');
+    parts.push(`<th class="rowhead${rowComplete ? ' row-complete-head' : ''}">${esc(r)}</th>`);
+    for (const c of cols){
+      const cell = cellIndex.get(KEY(r, c));
+      if (cell.disabled){ parts.push(`<td class="cell disabled"></td>`); continue; }
+      const kwHit = !kw || rowHit || c.toLowerCase().includes(kw);
+      const modeHit = mode === 'all' || (mode === 'blank' && !cell.done) || (mode === 'done' && cell.done);
+      const dim = (kwHit && modeHit) ? '' : ' dim';
+      let extraCls = '';
+      if (rowComplete){
+        extraCls = ' row-complete';
+      } else if (cell.gem){
+        extraCls = cell.done ? ' gem-cell done' : ' gem-cell';
+      } else if (cell.done){
+        const e = isEvenValue(cell.value), m = isMultiple3Value(cell.value);
+        if (e && m) extraCls = ' both-highlight';
+        else if (e) extraCls = ' even-highlight';
+        else if (m) extraCls = ' multiple3-highlight';
+      }
+      const cls = 'cell ' + (cell.done && !cell.gem && !rowComplete ? 'done' : 'blank') + extraCls + dim;
+      parts.push(`<td class="${cls}" data-r="${esc(r)}" data-c="${esc(c)}">${cell.done ? esc(cell.value) : ''}</td>`);
+    }
+    parts.push('</tr>');
+  }
+  parts.push('</tbody></table>'); box.innerHTML = parts.join('');
+}
+$('tablebox').addEventListener('click', e => {
+  const td = e.target.closest('td.cell'); if (!td) return;
+  if (td.classList.contains('disabled')){ $('detail').innerHTML = '<span style="color:#c0392b">禁用格，不计入统计</span>'; return; }
+  const cell = cellIndex.get(KEY(td.dataset.r, td.dataset.c));
+  if (!cell) return;
+  let notes = '';
+  if (isRowComplete(td.dataset.r)) notes = ' ｜ <span style="color:#1e3a8a">🟦 整行全收集</span>';
+  else if (cell.gem) notes = ' ｜ <span style="color:#1e40af">💎 亮晶晶格</span>';
+  else if (cell.done){
+    const e = isEvenValue(cell.value), m = isMultiple3Value(cell.value);
+    if (e && m) notes = ' ｜ <span style="color:#92400e">🟠 两者皆是</span>';
+    else if (e) notes = ' ｜ <span style="color:#b45309">🟡 偶数</span>';
+    else if (m) notes = ' ｜ <span style="color:#0e7490">🔵 3的倍数</span>';
+  }
+  $('detail').innerHTML = `行：<b>${esc(td.dataset.r)}</b> ｜ 列：<b>${esc(td.dataset.c)}</b> ｜ 状态：<b style="color:${cell.done ? '#1c7a4a' : '#c0392b'}">${cell.done ? '已收集' : '空白'}</b> ｜ 数值：<b>${cell.done ? esc(cell.value) : '（无）'}</b>${notes}`;
+});
+
+const DEFAULT_OPTIONS = {
+  color: ['红','黄','蓝','绿','紫'],
+  price: ['30w','40w','50w','80w','90w','100w','130w','140w','180w','300w'],
+  chain: ['古铜','素银','纯金','璨光秘银'],
+  fire: ['微光','星芒','辉耀','虹彩幻影'],
+  clarity: ['黯淡','微瑕','无瑕','稀世瑰宝']
+};
+function populateSelect(sel, options){
+  const cur = sel.value;
+  sel.innerHTML = options.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
+  if (options.includes(cur)) sel.value = cur;
+}
+function getParsedOptions(){
+  if (!rows.length) return { color:DEFAULT_OPTIONS.color, price:DEFAULT_OPTIONS.price, chain:DEFAULT_OPTIONS.chain, fire:DEFAULT_OPTIONS.fire, clarity:DEFAULT_OPTIONS.clarity, structured:false };
+  const color = cols.length ? cols : DEFAULT_OPTIONS.color;
+  const priceSet = new Set(), chainSet = new Set(), fireSet = new Set(), claritySet = new Set();
+  let structured = false;
+  for (const r of rows){
+    const parts = r.split('-');
+    if (parts.length >= 4){ structured = true; priceSet.add(parts[0]); chainSet.add(parts[1]); fireSet.add(parts[2]); claritySet.add(parts.slice(3).join('-')); }
+  }
+  if (structured && priceSet.size && chainSet.size && fireSet.size && claritySet.size){
+    return { color, price:[...priceSet], chain:[...chainSet], fire:[...fireSet], clarity:[...claritySet], structured:true };
+  }
+  return { color, ...DEFAULT_OPTIONS, structured:false };
+}
+function refreshAddOptions(){
+  const o = getParsedOptions();
+  populateSelect($('addColor'), o.color); populateSelect($('addPrice'), o.price);
+  populateSelect($('addChain'), o.chain); populateSelect($('addFire'), o.fire);
+  populateSelect($('addClarity'), o.clarity);
+  handlePriceChange(); updateAddPreview();
+}
+function refreshTaskOptions(){
+  const o = getParsedOptions();
+  populateSelect($('taskColor'), o.color); populateSelect($('taskPrice'), o.price);
+  populateSelect($('taskChain'), o.chain); populateSelect($('taskFire'), o.fire);
+  populateSelect($('taskClarity'), o.clarity);
+}
+function sumValues(o, n){
+  if (!isNumeric(o) || !isNumeric(n)) return String(n);
+  const sum = parseFloat(o) + parseFloat(n);
+  return Number.isInteger(sum) ? String(sum) : String(sum);
+}
+function handlePriceChange(){
+  const price = $('addPrice').value;
+  const cS = $('addColor'), chS = $('addChain'), fS = $('addFire'), clS = $('addClarity');
+  if (price === SPECIAL_PRICE){
+    const has = [cS, chS, fS, clS].map((s, i) => [...s.options].some(o => o.value === [SPECIAL_COLOR, SPECIAL_CHAIN, SPECIAL_FIRE, SPECIAL_CLARITY][i]));
+    if (has.every(v => v)){
+      cS.value = SPECIAL_COLOR; chS.value = SPECIAL_CHAIN; fS.value = SPECIAL_FIRE; clS.value = SPECIAL_CLARITY;
+      cS.disabled = chS.disabled = fS.disabled = clS.disabled = true;
+    } else cS.disabled = chS.disabled = fS.disabled = clS.disabled = false;
+  } else cS.disabled = chS.disabled = fS.disabled = clS.disabled = false;
+}
+function updateAddPreview(){
+  const c = $('addColor').value, p = $('addPrice').value, ch = $('addChain').value, f = $('addFire').value, cl = $('addClarity').value, v = $('addValue').value.trim();
+  if (!c || !p || !ch || !f || !cl){ $('addPreview').textContent = '预览：请选择完整信息'; return; }
+  const rowName = `${p}-${ch}-${f}-${cl}`, disabled = isDisabledCell(rowName, c);
+  let html = `预览：<b>${esc(c)}</b> ｜ <b>${esc(rowName)}</b>`;
+  if (v) html += ` = <b>${esc(v)}</b>`;
+  if (disabled) html += ` <span style="color:#c0392b;font-weight:600">（禁用格）</span>`;
+  else {
+    if (isGemCell(rowName, c)) html += ` <span style="color:#3b82f6;font-weight:600">💎 亮晶晶格</span>`;
+    const existing = collectedMap.get(KEY(rowName, c));
+    if (existing !== undefined && v !== ''){ const ns = sumValues(existing, v); html += `<br><span class="plus-note">已有 ${esc(existing)}，将累加为 ${esc(ns)}</span>`; }
+    else if (existing !== undefined){ html += `<br><span class="plus-note">已有值：${esc(existing)}</span>`; }
+  }
+  $('addPreview').innerHTML = html;
+}
+function setAddHint(msg, type){ const el = $('addHint'); el.textContent = msg; el.className = 'add-hint' + (type ? ' ' + type : ''); }
+
+function executeAddCollection(color, price, chain, fire, clarity, value, skipLimit){
+  const rowName = `${price}-${chain}-${fire}-${clarity}`;
+  if (!rows.includes(rowName) || !cols.includes(color)) return { ok:false, msg:'组合不存在' };
+  if (isDisabledCell(rowName, color)) return { ok:false, msg:'禁用格' };
+  const numVal = parseFloat(value);
+  if (!skipLimit && isNumeric(value)){
+    if (numVal > 100){
+      if (!unlockedSpecialAchievements.has('special_restock') && !isBanned('special_restock')){
+        unlockedSpecialAchievements.add('special_restock');
+        saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
+        const a = SPECIAL_ACHIEVEMENTS.find(x => x.id === 'special_restock');
+        showAchievementPopup([{...a, type:'special'}], 'special');
+      } else alert('来进货了！但数值不录入');
+      renderAllAchievements();
+      return { ok:false, msg:'数值大于100，不录入' };
+    }
+    if (numVal > 10){
+      if (!confirm('真的要导入这么多项链吗老大👀')) return { ok:false, msg:'已取消' };
+    }
+  }
+  const key = KEY(rowName, color);
+  const existing = collectedMap.get(key);
+  let finalValue;
+  if (existing !== undefined){ finalValue = sumValues(existing, value); collectedMap.set(key, finalValue); }
+  else { finalValue = value; collectedMap.set(key, finalValue); }
+  rebuild();
+  return { ok:true, finalValue, existing };
+}
+
+$('addHead').onclick = () => $('addPanel').classList.toggle('collapsed');
+$('taskHead').onclick = () => $('taskPanel').classList.toggle('collapsed');
+$('mournHead').onclick = () => $('mournPanel').classList.toggle('collapsed');
+
+$('btnAddNew').onclick = () => {
+  if (!rows.length) return setAddHint('请先导入表格', 'err');
+  const color = $('addColor').value, price = $('addPrice').value, chain = $('addChain').value, fire = $('addFire').value, clarity = $('addClarity').value, value = $('addValue').value.trim();
+  if (!color || !price || !chain || !fire || !clarity) return setAddHint('请选择完整的5个选项', 'err');
+  if (value === '') return setAddHint('请输入数值', 'err');
+  const rowName = `${price}-${chain}-${fire}-${clarity}`;
+  if (!rows.includes(rowName) || !cols.includes(color)){
+    const miss = [];
+    if (!rows.includes(rowName)) miss.push(`行"${rowName}"`);
+    if (!cols.includes(color)) miss.push(`列"${color}"`);
+    return setAddHint(`未找到 ${miss.join(' 和 ')}`, 'err');
+  }
+  if (isDisabledCell(rowName, color)) return setAddHint('禁用格，不可添加', 'err');
+  const result = executeAddCollection(color, price, chain, fire, clarity, value);
+  if (result.ok){
+    if (result.existing !== undefined) setAddHint(`✅ 累加：${result.existing} → ${result.finalValue}（+${value}）`, 'ok');
+    else setAddHint(`✅ 已添加：= ${result.finalValue}`, 'ok');
+    flashCell(rowName, color);
+  } else setAddHint(result.msg, 'err');
+  $('addValue').value = ''; updateAddPreview();
+};
+$('btnClearNew').onclick = () => { $('addValue').value = ''; setAddHint(''); updateAddPreview(); };
+$('addPrice').addEventListener('change', () => { handlePriceChange(); updateAddPreview(); });
+['addColor','addChain','addFire','addClarity','addValue'].forEach(id => {
+  const el = $(id); el.addEventListener('change', updateAddPreview); el.addEventListener('input', updateAddPreview);
+});
+$('btnAddTask').onclick = () => addTask();
+$('btnClearTask').onclick = () => refreshTaskOptions();
+
+function flashCell(r, c){
+  document.querySelectorAll('td.flash-added').forEach(td => td.classList.remove('flash-added'));
+  requestAnimationFrame(() => {
+    const td = document.querySelector(`td.cell[data-r="${CSS.escape(r)}"][data-c="${CSS.escape(c)}"]`);
+    if (td){ td.classList.add('flash-added'); td.scrollIntoView({ behavior:'smooth', block:'center', inline:'center' }); }
+  });
+}
+
+$('btnMournAdd').onclick = () => {
+  const input = $('mournInput'); const text = input.value.trim();
+  if (!text) return;
+  mournRecords.push({
+    id: Date.now() + Math.random().toString(36).slice(2,6),
+    ts: Date.now(), text,
+    withTime: $('mournWithTime').checked,
+    showInDanmaku: $('mournShowInDanmaku').checked
+  });
+  saveJSON(K.MOURN, mournRecords);
+  input.value = ''; renderMournList(); checkMournAchievements(); checkSpecialAchievements();
+};
+$('mournInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('btnMournAdd').click(); });
+$('btnPray').onclick = () => {
+  prayCount++;
+  try { localStorage.setItem(K.PRAY, String(prayCount)); } catch(e){}
+  renderPrayUnlock(); fireDanmakuBurst(); checkPrayAchievements(); checkSpecialAchievements();
+};
+$('btnMournCustomAdd').onclick = () => {
+  if (customDanmaku.length >= 10) return;
+  customDanmaku.push('新的弹幕内容');
+  saveJSON(K.CUSTOM_DANMAKU, customDanmaku); renderCustomDanmaku();
+};
+
+let currentListData = null, currentListFilename = '';
+function showListModal(title, data, filename){
+  currentListData = data; currentListFilename = filename;
+  $('listTitle').textContent = title;
+  $('listCount').textContent = `${data.length - 1} 条`;
+  const body = $('listBody');
+  if (data.length <= 1) body.innerHTML = '<div class="list-empty">暂无数据</div>';
+  else {
+    const header = data[0], rows_ = data.slice(1);
+    let html = '<table class="list-table"><thead><tr>';
+    for (const h of header) html += `<th>${esc(h)}</th>`;
+    html += '</tr></thead><tbody>';
+    for (const row of rows_){ html += '<tr>'; for (const v of row) html += `<td>${esc(v)}</td>`; html += '</tr>'; }
+    html += '</tbody></table>';
+    body.innerHTML = html;
+  }
+  $('listModal').classList.add('show');
+}
+$('listCloseBtn').onclick = () => { $('listModal').classList.remove('show'); currentListData = null; };
+$('listExportBtn').onclick = () => { if (currentListData) downloadCSV(currentListFilename, currentListData); };
+
+function downloadCSV(filename, arr){
+  const csv = arr.map(row => row.map(v => { v = String(v ?? ''); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(',')).join('\r\n');
+  const blob = new Blob(['\uFEFF' + csv], { type:'text/csv;charset=utf-8;' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function isAllCollected(){
+  if (!rows.length || !cols.length) return false;
+  for (const cell of cellIndex.values()){ if (cell.disabled) continue; if (!cell.done) return false; }
+  return true;
+}
+
+$('btnExportAll').onclick = () => {
+  if (!rows.length) return alert('请先导入表格');
+  const data = [['行名','列名','状态','数值']];
+  for (const r of rows) for (const c of cols){
+    const cell = cellIndex.get(KEY(r, c));
+    if (cell.disabled) continue;
+    data.push([r, c, cell.done ? '已收集' : '空白', cell.value]);
+  }
+  showListModal('📥 全量明细', data, '加页手记_全量明细.csv');
+};
+$('btnExportBlank').onclick = () => {
+  if (!rows.length) return alert('请先导入表格');
+  if (isAllCollected()){ alert('老大你已经收集到了全部啦！'); return; }
+  const data = [['未收集项']];
+  for (const r of rows) for (const c of cols){
+    const cell = cellIndex.get(KEY(r, c));
+    if (cell.disabled) continue;
+    if (!cell.done) data.push([r + '-' + c]);
+  }
+  if (data.length === 1) return alert('没有未收集的项');
+  showListModal('📋 未收集清单', data, '加页手记_未收集清单.csv');
+};
+$('btnExportStats').onclick = () => {
+  if (!rows.length) return alert('请先导入表格');
+  if (isAllCollected()) alert('恭喜老大完成了蓝宝石全收集！');
+  const data = [['颜色','已收集数量','总需求数量','未收集数量','完成率']];
+  let totalDone = 0, totalAll = 0;
+  for (const c of cols){
+    let doneCount = 0, totalForColor = 0;
+    for (const r of rows){
+      const cell = cellIndex.get(KEY(r, c));
+      if (cell.disabled) continue;
+      totalForColor++;
+      if (cell.done) doneCount++;
+    }
+    const blankCount = totalForColor - doneCount;
+    const pct = totalForColor ? (doneCount / totalForColor * 100).toFixed(1) + '%' : '0%';
+    data.push([c, doneCount, totalForColor, blankCount, pct]);
+    totalDone += doneCount; totalAll += totalForColor;
+  }
+  const totalPct = totalAll ? (totalDone / totalAll * 100).toFixed(1) + '%' : '0%';
+  data.push(['总计', totalDone, totalAll, totalAll - totalDone, totalPct]);
+  showListModal('📈 蓝宝石总量', data, '加页手记_蓝宝石总量.csv');
+};
+$('btnExportCollected').onclick = () => {
+  if (!rows.length) return alert('请先导入表格');
+  if (isAllCollected()) alert('居然是全收集吗，不愧是老大！');
+  const data = [['行名','列名','收集数值']];
+  for (const r of rows) for (const c of cols){
+    const cell = cellIndex.get(KEY(r, c));
+    if (cell.disabled) continue;
+    if (cell.done) data.push([r, c, cell.value]);
+  }
+  if (data.length === 1) return alert('暂无已收集的记录');
+  showListModal('✅ 已收集明细', data, '加页手记_已收集明细.csv');
+};
+$('btnExportNewTable').onclick = () => {
+  if (!rows.length) return alert('请先导入表格');
+  const data = [['行名', ...cols]];
+  for (const r of rows){
+    const rowData = [r];
+    for (const c of cols){
+      const cell = cellIndex.get(KEY(r, c));
+      if (!cell || cell.disabled) rowData.push('');
+      else if (cell.done) rowData.push(cell.value);
+      else rowData.push('');
+    }
+    data.push(rowData);
+  }
+  showListModal('💾 新收集表格', data, '加页手记_新收集表格.csv');
+};
+
+$('fileImport').addEventListener('change', e => { if (e.target.files[0]) importFile(e.target.files[0]); });
+
+let imgUrl = null;
+$('fileImage').addEventListener('change', e => {
+  const file = e.target.files[0]; if (!file) return;
+  if (imgUrl) URL.revokeObjectURL(imgUrl);
+  imgUrl = URL.createObjectURL(file);
+  $('floatImgSrc').src = imgUrl;
+  $('floatImage').style.display = 'block';
+  $('imageInfo').textContent = `已上传：${file.name}`;
+});
+$('closeFloatBtn').onclick = () => $('floatImage').style.display = 'none';
+let isDragging = false, startX, startY, startLeft, startTop;
+const floatBox = $('floatImage');
+floatBox.addEventListener('touchstart', e => {
+  if (e.target.id === 'closeFloatBtn') return;
+  isDragging = true;
+  const touch = e.touches[0]; startX = touch.clientX; startY = touch.clientY;
+  const rect = floatBox.getBoundingClientRect(); startLeft = rect.left; startTop = rect.top;
+  floatBox.style.transition = 'none';
+}, { passive:true });
+document.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const touch = e.touches[0];
+  floatBox.style.left = (startLeft + touch.clientX - startX) + 'px';
+  floatBox.style.top = (startTop + touch.clientY - startY) + 'px';
+  floatBox.style.right = 'auto'; floatBox.style.bottom = 'auto';
+}, { passive:false });
+document.addEventListener('touchend', () => { if (isDragging){ isDragging = false; floatBox.style.transition = 'box-shadow .2s'; } });
+
+let timer = null;
+$('search').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderTable, 200); });
+$('filter').addEventListener('change', renderTable);
+
+renderAllAchievements();
+refreshAddOptions();
+refreshTaskOptions();
+renderTasks();
+renderMournList();
+renderPrayUnlock();
+checkMournAchievements();
+checkPrayAchievements();
+checkSpecialAchievements();
+checkTaskAchievements();
+checkMysteryProgress();
+updateRecycleBadge();
+</script>
+</body>
+</html>
