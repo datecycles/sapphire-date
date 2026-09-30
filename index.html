@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>加页手记蓝宝石项链收集</title>
+<title>加页笔记收集小助手</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="加页手记">
+<meta name="apple-mobile-web-app-title" content="加页笔记">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1c7a4a">
 <meta name="format-detection" content="telephone=no">
@@ -14,50 +14,22 @@
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 (function(){
-  var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>" +
-    "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
-    "<stop offset='0' stop-color='#3b82f6'/><stop offset='1' stop-color='#1e40af'/>" +
-    "</linearGradient></defs>" +
-    "<rect width='200' height='200' rx='40' fill='url(#g)'/>" +
-    "<polygon points='100,30 160,80 140,160 60,160 40,80' fill='#fff' opacity='0.95'/>" +
-    "<polygon points='100,50 140,85 130,140 70,140 60,85' fill='#3b82f6'/>" +
-    "<polygon points='100,60 125,88 118,128 82,128 75,88' fill='#fff' opacity='0.9'/>" +
-    "</svg>";
+  var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#3b82f6'/><stop offset='1' stop-color='#1e40af'/></linearGradient></defs><rect width='200' height='200' rx='40' fill='url(#g)'/><polygon points='100,30 160,80 140,160 60,160 40,80' fill='#fff' opacity='0.95'/><polygon points='100,50 140,85 130,140 70,140 60,85' fill='#3b82f6'/><polygon points='100,60 125,88 118,128 82,128 75,88' fill='#fff' opacity='0.9'/></svg>";
   var img = new Image();
   img.onload = function(){
-    var c = document.createElement('canvas');
-    c.width = 180; c.height = 180;
-    var ctx = c.getContext('2d');
-    ctx.drawImage(img, 0, 0, 180, 180);
+    var c = document.createElement('canvas'); c.width = 180; c.height = 180;
     try {
+      c.getContext('2d').drawImage(img, 0, 0, 180, 180);
       var png = c.toDataURL('image/png');
-      var link = document.createElement('link');
-      link.rel = 'apple-touch-icon';
-      link.href = png;
+      var link = document.createElement('link'); link.rel = 'apple-touch-icon'; link.href = png;
       document.head.appendChild(link);
     } catch(e){}
   };
   img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-
-  var manifest = {
-    name: '加页手记蓝宝石项链收集',
-    short_name: '加页手记',
-    start_url: '.',
-    display: 'standalone',
-    background_color: '#f5f6f8',
-    theme_color: '#1c7a4a',
-    orientation: 'portrait',
-    icons: [{
-      src: 'data:image/svg+xml;utf8,' + encodeURIComponent(svg),
-      sizes: 'any',
-      type: 'image/svg+xml'
-    }]
-  };
   try {
-    var blob = new Blob([JSON.stringify(manifest)], {type: 'application/manifest+json'});
-    var mlink = document.createElement('link');
-    mlink.rel = 'manifest';
-    mlink.href = URL.createObjectURL(blob);
+    var manifest = { name:'加页笔记收集小助手', short_name:'加页笔记', start_url:'.', display:'standalone', background_color:'#f5f6f8', theme_color:'#1c7a4a', orientation:'portrait', icons:[{src:'data:image/svg+xml;utf8,'+encodeURIComponent(svg),sizes:'any',type:'image/svg+xml'}] };
+    var blob = new Blob([JSON.stringify(manifest)], {type:'application/manifest+json'});
+    var mlink = document.createElement('link'); mlink.rel = 'manifest'; mlink.href = URL.createObjectURL(blob);
     document.head.appendChild(mlink);
   } catch(e){}
 })();
@@ -89,7 +61,8 @@ h1{font-size:17px;margin:0 0 10px;text-align:center}
 .add-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .add-field{display:flex;flex-direction:column;gap:3px}
 .add-field label{font-size:11px;color:#888;font-weight:500}
-.add-field select,.add-field input{padding:9px 8px;border:1px solid #d5d8dc;border-radius:8px;font-size:13px;width:100%;background:#fff;outline:none;color:#222}
+.add-field select,.add-field input,.add-field textarea{padding:9px 8px;border:1px solid #d5d8dc;border-radius:8px;font-size:13px;width:100%;background:#fff;outline:none;color:#222;font-family:inherit}
+.add-field textarea{resize:vertical}
 .add-field select:disabled,.add-field input:disabled{background:#f0f2f5;color:#888;cursor:not-allowed}
 .add-actions{display:flex;gap:8px;margin-top:4px}
 .add-actions button{flex:1;padding:11px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
@@ -146,7 +119,11 @@ th,td{border-right:1px solid #eceef1;border-bottom:1px solid #eceef1;padding:10p
 thead th{position:sticky;top:0;background:#fafbfc;z-index:2;font-weight:600;font-size:13px}
 th.rowhead{position:sticky;left:0;background:#fafbfc;z-index:1;text-align:left;font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis}
 th.corner{position:sticky;left:0;top:0;z-index:3;background:#f2f4f6}
-td.cell{cursor:pointer;min-width:56px;min-height:36px}
+td.cell{cursor:pointer;min-width:56px;min-height:36px;position:relative}
+.remark-dot{position:absolute;top:2px;right:2px;width:6px;height:6px;background:#ef4444;border-radius:50%;box-shadow:0 0 2px rgba(0,0,0,.3)}
+.remark-edit-btn{margin-top:8px;padding:8px 14px;border:1px solid #4c9aff;border-radius:6px;background:#eff6ff;color:#1e40af;font-size:13px;font-weight:600;cursor:pointer}
+.remark-edit-btn:active{background:#dbfefe}
+.remark-display{color:#475569;font-size:13px}
 td.done{background:#e7f6ee;color:#1c7a4a;font-weight:600}
 td.blank{background:#fcfcfd;color:#c9ccd1}
 td.dim{opacity:.15}
@@ -190,7 +167,7 @@ td.flash-added{animation:flashAdded 1.2s ease}
 .mourn-custom-item button{padding:6px 10px;border:none;border-radius:6px;background:#e2e8f0;color:#64748b;font-size:12px;cursor:pointer}
 .mourn-custom-add{width:100%;padding:8px;border:1px dashed #94a3b8;border-radius:6px;background:transparent;color:#475569;font-size:12px;cursor:pointer}
 .danmaku-layer{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;overflow:hidden}
-.danmaku-item{position:absolute;white-space:nowrap;font-size:15px;font-weight:600;color:#334155;text-shadow:0 1px 3px rgba(255,255,255,.9);animation:danmakuMove linear forwards}
+.danmaku-item{position:absolute;white-space:nowrap;font-weight:600;text-shadow:0 1px 3px rgba(255,255,255,.9);animation:danmakuMove linear forwards;will-change:transform}
 @keyframes danmakuMove{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
 .danmaku-item.mourn-danmaku{font-style:italic;font-weight:500;font-size:14px;color:#475569;background:rgba(255,255,255,.92);padding:3px 12px;border-radius:14px;border:1px solid #cbd5e1;box-shadow:0 1px 4px rgba(0,0,0,.08);text-shadow:none}
 .ach-modal,.badge-modal,.custom-badge-modal,.list-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;align-items:center;justify-content:center;padding:20px}
@@ -269,6 +246,51 @@ td.flash-added{animation:flashAdded 1.2s ease}
 .recycle-item .btns button{padding:5px 10px;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
 .restore-btn{background:#dbeafe;color:#1e40af}
 .permanent-btn{background:#fecaca;color:#991b1b}
+/* 联动辞章 */
+.linkage-sub{font-size:12px;font-weight:600;color:#7c3aed;margin:8px 0 6px;padding-left:6px;border-left:3px solid #a78bfa}
+.linkage-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#faf5ff;border:1px solid #e9d5ff;border-radius:8px;margin-bottom:6px;font-size:13px}
+.linkage-item-name{flex:1;word-break:break-all}
+.linkage-item-count{display:flex;align-items:center;gap:4px}
+.linkage-item-count button{width:28px;height:28px;border:1px solid #c4b5fd;border-radius:6px;background:#fff;color:#7c3aed;font-size:16px;font-weight:700;cursor:pointer;line-height:1;padding:0}
+.linkage-item-count button:active{background:#ede9fe}
+.linkage-item-count input{width:48px;padding:5px;border:1px solid #c4b5fd;border-radius:6px;font-size:13px;text-align:center;outline:none}
+.linkage-locked{display:flex;align-items:center;justify-content:center;gap:8px;padding:20px;background:#f1f5f9;border:1px dashed #cbd5e1;border-radius:8px;color:#94a3b8;font-size:13px;font-weight:600}
+.linkage-total{font-size:12px;color:#7c3aed;text-align:right;margin-top:6px;font-weight:600}
+/* 公告 */
+.notice-bar{background:#fff;border:1px solid #e3e5e8;border-radius:10px;padding:10px 12px;margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:8px;position:relative}
+.notice-bar:active{background:#f8f9fa}
+.notice-bar-title{flex:1;font-size:14px;font-weight:600;color:#b45309}
+.notice-bar-icon{font-size:16px}
+.notice-red-dot{width:10px;height:10px;background:#ef4444;border-radius:50%;flex-shrink:0;box-shadow:0 0 6px rgba(239,68,68,.6);animation:redDotPulse 1.5s infinite}
+@keyframes redDotPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.notice-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.notice-modal.show{display:flex}
+.notice-content{background:#fff;border-radius:16px;padding:20px;max-width:400px;width:100%;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:pop .35s}
+.notice-title{font-size:17px;font-weight:700;color:#b45309;margin-bottom:12px;text-align:center}
+.notice-body{flex:1;overflow-y:auto;font-size:13px;line-height:1.7;color:#334155;white-space:pre-wrap;padding:8px 4px;background:#fffbeb;border-radius:8px;border:1px solid #fef3c7}
+.notice-footer{margin-top:12px;display:flex;gap:8px}
+.notice-footer button{flex:1;padding:11px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+#noticeCloseBtn{background:#f0f2f5;color:#555}
+#noticeConfirmBtn{background:#f59e0b;color:#fff}
+/* 隐藏 */
+.hide-achievements #achievementSection{display:none !important}
+.hide-tasks #taskPanel{display:none !important}
+.hide-mourn #mournPanel{display:none !important}
+.hide-record #recordPanel{display:none !important}
+.hide-linkage #linkagePanel{display:none !important}
+body.simplified-mode #stats,
+body.simplified-mode #bar,
+body.simplified-mode #tablebox,
+body.simplified-mode .legend,
+body.simplified-mode #detail,
+body.simplified-mode #achievementSection,
+body.simplified-mode #taskPanel,
+body.simplified-mode #mournPanel,
+body.simplified-mode #recordPanel,
+body.simplified-mode #linkagePanel,
+body.simplified-mode #settingsPanel,
+body.simplified-mode .danger-zone{display:none !important}
+body.simplified-mode #exitSimplifiedBtn{display:block !important}
 @media (min-width:600px){
   .wrap{max-width:1000px;padding:20px}
   .panel{flex-direction:row}
@@ -283,7 +305,15 @@ td.flash-added{animation:flashAdded 1.2s ease}
 </head>
 <body>
 <div class="wrap">
-  <h1>📊 加页手记蓝宝石项链收集</h1>
+  <h1>📊 加页笔记收集小助手</h1>
+  <button id="exitSimplifiedBtn" style="display:none;width:100%;padding:12px;margin-bottom:12px;border:1px solid #10b981;border-radius:8px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);color:#065f46;font-size:14px;font-weight:700;cursor:pointer;">退出极简化模式</button>
+
+  <!-- 📢 公告 -->
+  <div class="notice-bar" id="noticeBar">
+    <span class="notice-bar-icon">📢</span>
+    <span class="notice-bar-title">公告（点击查看）</span>
+    <span class="notice-red-dot" id="noticeRedDot" style="display:none"></span>
+  </div>
 
   <div class="panel">
     <div class="fbox">
@@ -310,7 +340,7 @@ td.flash-added{animation:flashAdded 1.2s ease}
         <div class="add-field"><label>链身</label><select id="addChain"></select></div>
         <div class="add-field"><label>流光火彩</label><select id="addFire"></select></div>
         <div class="add-field"><label>宝石净度</label><select id="addClarity"></select></div>
-        <div class="add-field"><label>数值</label><input type="number" id="addValue" placeholder="1-10" inputmode="numeric"></div>
+        <div class="add-field"><label>项链数量</label><input type="number" id="addValue" placeholder="1-10" inputmode="numeric"></div>
       </div>
       <div class="add-preview" id="addPreview">预览：请选择完整信息</div>
       <div class="add-actions">
@@ -318,6 +348,31 @@ td.flash-added{animation:flashAdded 1.2s ease}
         <button id="btnClearNew" class="btn-grey">清空</button>
       </div>
       <div class="add-hint" id="addHint"></div>
+    </div>
+  </div>
+
+  <!-- 💫 联动辞章收集记录 -->
+  <div class="pnl collapsed" id="linkagePanel">
+    <div class="pnl-head" id="linkageHead">
+      <div class="pnl-head-title" style="color:#7c3aed">💫 联动辞章收集记录</div>
+      <div class="pnl-head-arrow">▼</div>
+    </div>
+    <div class="pnl-body">
+      <!-- 栏目1：盗墓笔记 -->
+      <div class="linkage-sub">🏺 盗墓笔记联动辞章</div>
+      <div id="linkageDmbj"></div>
+      <div class="linkage-total" id="linkageDmbjTotal">小计：0</div>
+      <!-- 栏目2：故宫观唐 -->
+      <div class="linkage-sub" style="margin-top:14px">🏛️ 故宫观唐联动辞章</div>
+      <div id="linkageGggt"></div>
+      <div class="linkage-total" id="linkageGggtTotal">小计：0</div>
+      <!-- 栏目3：待更新 -->
+      <div class="linkage-sub" style="margin-top:14px">❓ 待更新</div>
+      <div class="linkage-locked">🔒 敬请期待 · 待更新</div>
+      <div class="add-actions" style="margin-top:10px">
+        <button id="btnExportLinkage" style="background:#faf5ff;color:#7c3aed;border:1px solid #e9d5ff">📥 导出联动辞章</button>
+      </div>
+      <div class="add-hint" id="linkageHint"></div>
     </div>
   </div>
 
@@ -347,10 +402,12 @@ td.flash-added{animation:flashAdded 1.2s ease}
   <div class="stats" id="stats"></div>
   <div class="bar"><i id="bar"></i></div>
 
-  <div class="badge-wall-title">🏅 我的勋章</div>
-  <div class="badge-wall" id="badgeWall"></div>
-  <button class="show-hidden-link" id="showHiddenLink" style="display:none">👁️ 显示已隐藏的勋章</button>
-  <button class="reset-badge" id="resetBadgeBtn">重置勋章记录</button>
+  <div id="achievementSection">
+    <div class="badge-wall-title">🏅 我的勋章</div>
+    <div class="badge-wall" id="badgeWall"></div>
+    <button class="show-hidden-link" id="showHiddenLink" style="display:none">👁️ 显示已隐藏的勋章</button>
+    <button class="reset-badge" id="resetBadgeBtn">重置勋章记录</button>
+  </div>
 
   <div class="toolbar">
     <input id="search" placeholder="🔍 搜索行名或列名...">
@@ -386,6 +443,36 @@ td.flash-added{animation:flashAdded 1.2s ease}
 
   <div class="detail" id="detail">点击表格中的格子查看详情</div>
 
+  <!-- 🪶 项链的记录 -->
+  <div class="pnl collapsed" id="recordPanel">
+    <div class="pnl-head" id="recordHead">
+      <div class="pnl-head-title" style="color:#0d9488">🪶 项链的记录</div>
+      <div class="pnl-head-arrow">▼</div>
+    </div>
+    <div class="pnl-body">
+      <div class="add-grid">
+        <div class="add-field"><label>颜色</label><select id="recColor"></select></div>
+        <div class="add-field"><label>蓝宝石价值</label><select id="recPrice"></select></div>
+        <div class="add-field"><label>链身</label><select id="recChain"></select></div>
+        <div class="add-field"><label>流光火彩</label><select id="recFire"></select></div>
+        <div class="add-field"><label>宝石净度</label><select id="recClarity"></select></div>
+        <div class="add-field"><label>相关日期</label><input type="date" id="recDate"></div>
+      </div>
+      <div class="add-field" style="margin-bottom:8px">
+        <label>详细记录</label>
+        <textarea id="recContent" rows="4" placeholder="写下这串项链的故事或细节..."></textarea>
+      </div>
+      <div class="add-actions">
+        <button id="btnAddRecord" class="btn-green" style="background:#0d9488">➕ 添加记录</button>
+        <button id="btnExportRecords" style="background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4">📥 导出记录</button>
+      </div>
+      <div class="add-hint" id="recordHint"></div>
+      <div class="mourn-list" id="recordList" style="margin-top:10px;max-height:400px">
+        <div class="empty" style="padding:16px;font-size:12px">暂无记录</div>
+      </div>
+    </div>
+  </div>
+
   <div class="pnl collapsed" id="mournPanel">
     <div class="pnl-head" id="mournHead">
       <div class="pnl-head-title" style="color:#475569">🕯️ 永远怀念😭</div>
@@ -397,18 +484,9 @@ td.flash-added{animation:flashAdded 1.2s ease}
         <button id="btnMournAdd">记录</button>
       </div>
       <div class="mourn-options">
-        <div class="mourn-option-row">
-          <input type="checkbox" id="mournWithTime" checked>
-          <label for="mournWithTime">记录时间</label>
-        </div>
-        <div class="mourn-option-row">
-          <input type="checkbox" id="mournShowInDanmaku">
-          <label for="mournShowInDanmaku">显示在弹幕中（成为弹幕池内容）</label>
-        </div>
-        <div class="mourn-option-row">
-          <input type="checkbox" id="mournWithEmoji" checked>
-          <label for="mournWithEmoji">弹幕自动添加 emoji（仅对预设弹幕生效）</label>
-        </div>
+        <div class="mourn-option-row"><input type="checkbox" id="mournWithTime" checked><label for="mournWithTime">记录时间</label></div>
+        <div class="mourn-option-row"><input type="checkbox" id="mournShowInDanmaku"><label for="mournShowInDanmaku">显示在弹幕中</label></div>
+        <div class="mourn-option-row"><input type="checkbox" id="mournWithEmoji" checked><label for="mournWithEmoji">弹幕自动添加 emoji</label></div>
       </div>
       <div class="mourn-list" id="mournList"><div class="empty" style="padding:16px;font-size:12px">暂无记录</div></div>
       <div class="mourn-counter" id="mournCounter">📝 已记录 0 条</div>
@@ -421,6 +499,23 @@ td.flash-added{animation:flashAdded 1.2s ease}
     </div>
   </div>
 
+  <!-- 界面设置 -->
+  <div class="pnl collapsed" id="settingsPanel">
+    <div class="pnl-head" id="settingsHead">
+      <div class="pnl-head-title" style="color:#475569">⚙️ 界面设置</div>
+      <div class="pnl-head-arrow">▼</div>
+    </div>
+    <div class="pnl-body">
+      <div class="mourn-option-row" style="margin-bottom:8px"><input type="checkbox" id="chkHideAch"><label for="chkHideAch">隐藏成就勋章墙（获得成就不弹窗）</label></div>
+      <div class="mourn-option-row" style="margin-bottom:8px"><input type="checkbox" id="chkHideTask"><label for="chkHideTask">隐藏任务面板（完成任务不弹窗）</label></div>
+      <div class="mourn-option-row" style="margin-bottom:8px"><input type="checkbox" id="chkHideMourn"><label for="chkHideMourn">隐藏留言与祈祷（获取对应成就不弹窗）</label></div>
+      <div class="mourn-option-row" style="margin-bottom:8px"><input type="checkbox" id="chkHideRecord"><label for="chkHideRecord">隐藏项链的记录</label></div>
+      <div class="mourn-option-row" style="margin-bottom:8px"><input type="checkbox" id="chkHideLinkage"><label for="chkHideLinkage">隐藏联动辞章收集记录</label></div>
+      <div class="mourn-option-row" style="margin-top:12px;padding-top:8px;border-top:1px dashed #e2e8f0"><input type="checkbox" id="chkSimplified"><label for="chkSimplified" style="font-weight:bold;color:#1c7a4a">🚀 极简化模式（仅保留核心功能，无成就弹窗）</label></div>
+    </div>
+  </div>
+
+  <!-- 危险操作区 -->
   <div class="danger-zone">
     <div class="danger-zone-title">⚠️ 危险操作区</div>
     <div class="danger-zone-actions">
@@ -436,6 +531,18 @@ td.flash-added{animation:flashAdded 1.2s ease}
 <div id="floatImage">
   <div id="closeFloatBtn">×</div>
   <img id="floatImgSrc" src="" alt="对照图">
+</div>
+
+<!-- 公告弹窗 -->
+<div class="notice-modal" id="noticeModal">
+  <div class="notice-content">
+    <div class="notice-title">📢 公告 · 置顶🔝</div>
+    <div class="notice-body" id="noticeBody"></div>
+    <div class="notice-footer">
+      <button id="noticeCloseBtn">稍后再看</button>
+      <button id="noticeConfirmBtn">确认已阅</button>
+    </div>
+  </div>
 </div>
 
 <div class="ach-modal" id="achievementModal">
@@ -460,11 +567,7 @@ td.flash-added{animation:flashAdded 1.2s ease}
     <div class="custom-badge-field"><label>图标（1个 Emoji）</label><input type="text" id="customBadgeIcon" maxlength="4" placeholder="如 ⭐ 🌟 💫"></div>
     <div class="custom-badge-field"><label>名称（最多10字）</label><input type="text" id="customBadgeName" maxlength="10" placeholder="如 我的勋章"></div>
     <div class="custom-badge-field"><label>简介（可选）</label><input type="text" id="customBadgeDesc" maxlength="50" placeholder="简短描述"></div>
-    <div class="custom-badge-preview">
-      <div class="icon" id="previewIcon">✨</div>
-      <div class="name" id="previewName">我的勋章</div>
-      <div class="desc" id="previewDesc">简短描述</div>
-    </div>
+    <div class="custom-badge-preview"><div class="icon" id="previewIcon">✨</div><div class="name" id="previewName">我的勋章</div><div class="desc" id="previewDesc">简短描述</div></div>
     <div class="custom-badge-actions">
       <button id="customBadgeCancel">取消</button>
       <button id="customBadgeConfirm">创建</button>
@@ -474,29 +577,17 @@ td.flash-added{animation:flashAdded 1.2s ease}
 
 <div class="list-modal" id="listModal">
   <div class="list-content">
-    <div class="list-header">
-      <div class="list-title" id="listTitle">列表</div>
-      <div class="list-count" id="listCount"></div>
-    </div>
+    <div class="list-header"><div class="list-title" id="listTitle">列表</div><div class="list-count" id="listCount"></div></div>
     <div class="list-body" id="listBody"></div>
-    <div class="list-footer">
-      <button id="listCloseBtn">关闭list</button>
-      <button id="listExportBtn">导出list</button>
-    </div>
+    <div class="list-footer"><button id="listCloseBtn">关闭list</button><button id="listExportBtn">导出list</button></div>
   </div>
 </div>
 
 <div class="list-modal" id="recycleModal">
   <div class="list-content">
-    <div class="list-header">
-      <div class="list-title">🗑️ 回收站</div>
-      <div class="list-count" id="recycleCount"></div>
-    </div>
+    <div class="list-header"><div class="list-title">🗑️ 回收站</div><div class="list-count" id="recycleCount"></div></div>
     <div class="list-body" id="recycleBody"></div>
-    <div class="list-footer">
-      <button id="recycleCloseBtn">关闭</button>
-      <button id="recycleClearAllBtn" style="background:#fecaca;color:#991b1b">清空回收站</button>
-    </div>
+    <div class="list-footer"><button id="recycleCloseBtn">关闭</button><button id="recycleClearAllBtn" style="background:#fecaca;color:#991b1b">清空回收站</button></div>
   </div>
 </div>
 
@@ -506,11 +597,7 @@ const KEY = (r, c) => r + '\u0001' + c;
 const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
 const TARGET_COLS = ['红','蓝','绿','黄','紫'];
-const SPECIAL_PRICE = '300w';
-const SPECIAL_CHAIN = '璨光秘银';
-const SPECIAL_FIRE = '虹彩幻影';
-const SPECIAL_CLARITY = '稀世瑰宝';
-const SPECIAL_COLOR = '蓝';
+const SPECIAL_PRICE = '300w', SPECIAL_CHAIN = '璨光秘银', SPECIAL_FIRE = '虹彩幻影', SPECIAL_CLARITY = '稀世瑰宝', SPECIAL_COLOR = '蓝';
 const SPECIAL_ROW = `${SPECIAL_PRICE}-${SPECIAL_CHAIN}-${SPECIAL_FIRE}-${SPECIAL_CLARITY}`;
 const GEM_ROW = SPECIAL_ROW, GEM_COL = SPECIAL_COLOR, GEM_KEY = KEY(GEM_ROW, GEM_COL);
 const isDisabledCell = (r,c) => r.startsWith(SPECIAL_PRICE + '-') && c !== SPECIAL_COLOR;
@@ -523,7 +610,28 @@ const K = {
   PRAY_ACH:'gem_pray_achievements_v1', SPECIAL_ACH:'gem_special_achievements_v2', MYSTERY:'gem_mystery_state_v1',
   CUSTOM_BADGES:'gem_custom_badges_v1', BADGE_ORDER:'gem_badge_order_v1', PINNED_BADGE:'gem_pinned_badge_v1',
   HIDDEN_BADGES:'gem_hidden_badges_v1', TASKS:'gem_tasks_v1', TASK_STATS:'gem_task_stats_v1',
-  TASK_ACH:'gem_task_achievements_v1', RECYCLE:'gem_recycle_bin_v2', RECYCLE_BANNED:'gem_recycle_banned_v1'
+  TASK_ACH:'gem_task_achievements_v1', RECYCLE:'gem_recycle_bin_v2', RECYCLE_BANNED:'gem_recycle_banned_v1',
+  TABLE_DATA:'gem_table_data_v1', REMARKS:'gem_remarks_v1', RECORDS:'gem_records_v1',
+  SETTINGS:'gem_ui_settings_v1', LINKAGE:'gem_linkage_data_v1', NOTICE:'gem_notice_read_v1'
+};
+
+const NOTICE_TEXT = `1.该小程序为个人制作（有使用DeepSeek等帮助）的无偿小程序，纯属为爱发电，无盈利相关，旨在方便收集党进行内容的收集整合～
+2.本小程序设置了本地数据保存，但是还是建议各位老大记得导出需要保存的内容，初次制作，有建议/意见欢迎留言，请以平常心对待～
+3.仅是业余制作，本意是想帮朋友整理内容TT如有bug或使用问题欢迎留言！有空的话会进行修改并进行版本更新。
+4.含少量串子文案，串子文案均可自由编辑/删除，感到不适请自行删除，请不要给制作者扣帽子，只是想做点东西记录收集。设置内设有隐藏/简洁化功能，老大们可以自行diy。
+5.感谢各位老大使用～
+from 徊期`;
+
+/* 联动辞章配置 */
+const LINKAGE_CONFIG = {
+  dmbj: { title: '盗墓笔记联动辞章', items: [ {id:'guixi', name:'鬼玺'}, {id:'smtc', name:'蛇眉铜鱼'} ] },
+  gggt: { title: '故宫观唐联动辞章', items: [
+    {id:'jinyonggu', name:'金瓯永固杯'},
+    {id:'shuifazhong', name:'铜镀金乡村景色水法钟'},
+    {id:'hudiehe', name:'画珐琅蝴蝶纹蝴蝶式盒'},
+    {id:'hehuanping', name:'乾隆款胭脂红蓝地轧道珐琅彩折枝花纹合欢瓶'},
+    {id:'duoshengpan', name:'文竹多盛盘'}
+  ] }
 };
 
 const DEFAULT_DANMAKU = ['永远怀念😭😭😭','拒绝加页手记鹿锤打团😭','最不敏感之人😭','这也太绅士了吧🥹','不要再打了💔','我一直在哭😇'];
@@ -534,11 +642,137 @@ const saveSet = (k, s) => { try { localStorage.setItem(k, JSON.stringify([...s])
 const loadJSON = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v === null || v === undefined ? d : v; } catch(e){ return d; } };
 const saveJSON = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
 
+/* ========== 公告 ========== */
+let noticeRead = loadJSON(K.NOTICE, { confirmed: false });
+function updateNoticeDot(){
+  $('noticeRedDot').style.display = noticeRead.confirmed ? 'none' : 'block';
+}
+$('noticeBar').onclick = () => {
+  $('noticeBody').textContent = NOTICE_TEXT;
+  $('noticeModal').classList.add('show');
+};
+$('noticeCloseBtn').onclick = () => $('noticeModal').classList.remove('show');
+$('noticeConfirmBtn').onclick = () => {
+  noticeRead.confirmed = true;
+  saveJSON(K.NOTICE, noticeRead);
+  updateNoticeDot();
+  $('noticeModal').classList.remove('show');
+};
+
+/* ========== 界面设置 ========== */
+let uiSettings = loadJSON(K.SETTINGS, { hideAchievements: false, hideTasks: false, hideMourn: false, hideRecord: false, hideLinkage: false, simplifiedMode: false });
+function applyUISettings() {
+  document.body.classList.toggle('hide-achievements', uiSettings.hideAchievements);
+  document.body.classList.toggle('hide-tasks', uiSettings.hideTasks);
+  document.body.classList.toggle('hide-mourn', uiSettings.hideMourn);
+  document.body.classList.toggle('hide-record', uiSettings.hideRecord);
+  document.body.classList.toggle('hide-linkage', uiSettings.hideLinkage);
+  document.body.classList.toggle('simplified-mode', uiSettings.simplifiedMode);
+  const chkA = $('chkHideAch'), chkT = $('chkHideTask'), chkM = $('chkHideMourn');
+  const chkR = $('chkHideRecord'), chkL = $('chkHideLinkage'), chkS = $('chkSimplified');
+  if (chkA) chkA.checked = uiSettings.hideAchievements;
+  if (chkT) chkT.checked = uiSettings.hideTasks;
+  if (chkM) chkM.checked = uiSettings.hideMourn;
+  if (chkR) chkR.checked = uiSettings.hideRecord;
+  if (chkL) chkL.checked = uiSettings.hideLinkage;
+  if (chkS) chkS.checked = uiSettings.simplifiedMode;
+}
+function bindSettingsEvents() {
+  const chkA = $('chkHideAch'), chkT = $('chkHideTask'), chkM = $('chkHideMourn');
+  const chkR = $('chkHideRecord'), chkL = $('chkHideLinkage'), chkS = $('chkSimplified');
+  if (chkA) chkA.onchange = () => { uiSettings.hideAchievements = chkA.checked; saveJSON(K.SETTINGS, uiSettings); applyUISettings(); };
+  if (chkT) chkT.onchange = () => { uiSettings.hideTasks = chkT.checked; saveJSON(K.SETTINGS, uiSettings); applyUISettings(); };
+  if (chkM) chkM.onchange = () => { uiSettings.hideMourn = chkM.checked; saveJSON(K.SETTINGS, uiSettings); applyUISettings(); };
+  if (chkR) chkR.onchange = () => { uiSettings.hideRecord = chkR.checked; saveJSON(K.SETTINGS, uiSettings); applyUISettings(); };
+  if (chkL) chkL.onchange = () => { uiSettings.hideLinkage = chkL.checked; saveJSON(K.SETTINGS, uiSettings); applyUISettings(); };
+  if (chkS) chkS.onchange = () => {
+    if (chkS.checked && !confirm('开启极简化模式后，将隐藏大部分界面。\n确定要开启吗？')) { chkS.checked = false; return; }
+    uiSettings.simplifiedMode = chkS.checked; saveJSON(K.SETTINGS, uiSettings); applyUISettings();
+  };
+  $('exitSimplifiedBtn').onclick = () => { uiSettings.simplifiedMode = false; saveJSON(K.SETTINGS, uiSettings); applyUISettings(); };
+  $('settingsHead').onclick = () => $('settingsPanel').classList.toggle('collapsed');
+  $('linkageHead').onclick = () => $('linkagePanel').classList.toggle('collapsed');
+}
+
+/* ========== 数据 ========== */
 let mournRecords = loadJSON(K.MOURN, []);
 let prayCount = parseInt(localStorage.getItem(K.PRAY) || '0', 10) || 0;
 let customDanmaku = loadJSON(K.CUSTOM_DANMAKU, null) || [...DEFAULT_DANMAKU];
 let recycleItems = loadJSON(K.RECYCLE, []);
 let recycleBanned = loadSet(K.RECYCLE_BANNED);
+let remarksMap = loadJSON(K.REMARKS, {});
+let recordsList = loadJSON(K.RECORDS, []);
+
+/* 联动辞章数据 */
+let linkageData = loadJSON(K.LINKAGE, null);
+if (!linkageData) {
+  linkageData = {};
+  LINKAGE_CONFIG.dmbj.items.forEach(it => linkageData[it.id] = 0);
+  LINKAGE_CONFIG.gggt.items.forEach(it => linkageData[it.id] = 0);
+}
+
+/* ========== 联动辞章渲染 ========== */
+function renderLinkage() {
+  // 盗墓笔记
+  const dmbjBox = $('linkageDmbj');
+  dmbjBox.innerHTML = LINKAGE_CONFIG.dmbj.items.map(it => `
+    <div class="linkage-item">
+      <span class="linkage-item-name">${esc(it.name)}</span>
+      <div class="linkage-item-count">
+        <button data-id="${it.id}" data-delta="-1">−</button>
+        <input type="number" min="0" value="${linkageData[it.id] || 0}" data-id="${it.id}">
+        <button data-id="${it.id}" data-delta="1">+</button>
+      </div>
+    </div>
+  `).join('');
+  $('linkageDmbjTotal').textContent = `小计：${LINKAGE_CONFIG.dmbj.items.reduce((s, it) => s + (linkageData[it.id] || 0), 0)}`;
+
+  // 故宫观唐
+  const gggtBox = $('linkageGggt');
+  gggtBox.innerHTML = LINKAGE_CONFIG.gggt.items.map(it => `
+    <div class="linkage-item">
+      <span class="linkage-item-name">${esc(it.name)}</span>
+      <div class="linkage-item-count">
+        <button data-id="${it.id}" data-delta="-1">−</button>
+        <input type="number" min="0" value="${linkageData[it.id] || 0}" data-id="${it.id}">
+        <button data-id="${it.id}" data-delta="1">+</button>
+      </div>
+    </div>
+  `).join('');
+  $('linkageGggtTotal').textContent = `小计：${LINKAGE_CONFIG.gggt.items.reduce((s, it) => s + (linkageData[it.id] || 0), 0)}`;
+
+  // 绑定事件
+  document.querySelectorAll('#linkageDmbj button, #linkageGggt button').forEach(btn => {
+    btn.onclick = () => {
+      const id = btn.dataset.id;
+      const delta = parseInt(btn.dataset.delta, 10);
+      const cur = linkageData[id] || 0;
+      const next = Math.max(0, cur + delta);
+      linkageData[id] = next;
+      saveJSON(K.LINKAGE, linkageData);
+      renderLinkage();
+    };
+  });
+  document.querySelectorAll('#linkageDmbj input, #linkageGggt input').forEach(inp => {
+    inp.onchange = () => {
+      const id = inp.dataset.id;
+      const v = parseInt(inp.value, 10);
+      linkageData[id] = isNaN(v) || v < 0 ? 0 : v;
+      saveJSON(K.LINKAGE, linkageData);
+      renderLinkage();
+    };
+  });
+}
+
+$('btnExportLinkage').onclick = () => {
+  const data = [['栏目', '辞章', '数量']];
+  LINKAGE_CONFIG.dmbj.items.forEach(it => data.push([LINKAGE_CONFIG.dmbj.title, it.name, linkageData[it.id] || 0]));
+  LINKAGE_CONFIG.gggt.items.forEach(it => data.push([LINKAGE_CONFIG.gggt.title, it.name, linkageData[it.id] || 0]));
+  const dTotal = LINKAGE_CONFIG.dmbj.items.reduce((s, it) => s + (linkageData[it.id] || 0), 0);
+  const gTotal = LINKAGE_CONFIG.gggt.items.reduce((s, it) => s + (linkageData[it.id] || 0), 0);
+  data.push(['总计', '', dTotal + gTotal]);
+  downloadCSV('加页笔记_联动辞章.csv', data);
+};
 
 /* ========== 回收站 ========== */
 function addToRecycle(item){
@@ -556,25 +790,19 @@ function updateRecycleBadge(){
 function openRecycleModal(){
   const body = $('recycleBody');
   $('recycleCount').textContent = `${recycleItems.length} 项`;
-  if (!recycleItems.length){
-    body.innerHTML = '<div class="list-empty">回收站是空的 🗑️</div>';
-  } else {
+  if (!recycleItems.length) body.innerHTML = '<div class="list-empty">回收站是空的 🗑️</div>';
+  else {
     body.innerHTML = recycleItems.map(it => `
       <div class="recycle-item" data-rid="${esc(it.rid)}">
         <div class="icon">${it.icon || '📦'}</div>
-        <div class="info">
-          <div class="name">${esc(it.name)}</div>
-          <div class="desc">${esc(it.desc || '')}</div>
-        </div>
+        <div class="info"><div class="name">${esc(it.name)}</div><div class="desc">${esc(it.desc || '')}</div></div>
         <div class="btns">
           <button class="restore-btn" data-action="restore" data-rid="${esc(it.rid)}">恢复</button>
           <button class="permanent-btn" data-action="permanent" data-rid="${esc(it.rid)}">彻底删除</button>
         </div>
       </div>
     `).join('');
-    body.querySelectorAll('button').forEach(btn => {
-      btn.onclick = () => handleRecycleAction(btn.dataset.action, btn.dataset.rid);
-    });
+    body.querySelectorAll('button').forEach(btn => { btn.onclick = () => handleRecycleAction(btn.dataset.action, btn.dataset.rid); });
   }
   $('recycleModal').classList.add('show');
 }
@@ -582,31 +810,18 @@ function handleRecycleAction(action, rid){
   const idx = recycleItems.findIndex(it => it.rid === rid);
   if (idx === -1) return;
   const item = recycleItems[idx];
-
   if (action === 'restore'){
-    if (item.type === 'mourn'){
-      mournRecords.push(item.data); saveJSON(K.MOURN, mournRecords);
-      renderMournList(); checkMournAchievements();
-    } else if (item.type === 'task'){
-      tasks.push(item.data); saveJSON(K.TASKS, tasks); renderTasks();
-    } else if (item.type === 'special'){
-      unlockedSpecialAchievements.add(item.data.achId); saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
-      renderAllAchievements();
-    } else if (item.type === 'custom'){
-      customBadges.push(item.data); saveJSON(K.CUSTOM_BADGES, customBadges); renderAllAchievements();
-    }
-    recycleItems.splice(idx, 1);
-    saveJSON(K.RECYCLE, recycleItems);
-    updateRecycleBadge();
-    openRecycleModal();
+    if (item.type === 'mourn'){ mournRecords.push(item.data); saveJSON(K.MOURN, mournRecords); renderMournList(); checkMournAchievements(); }
+    else if (item.type === 'task'){ tasks.push(item.data); saveJSON(K.TASKS, tasks); renderTasks(); }
+    else if (item.type === 'special'){ unlockedSpecialAchievements.add(item.data.achId); saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements); renderAllAchievements(); }
+    else if (item.type === 'custom'){ customBadges.push(item.data); saveJSON(K.CUSTOM_BADGES, customBadges); renderAllAchievements(); }
+    else if (item.type === 'record'){ recordsList.push(item.data); saveJSON(K.RECORDS, recordsList); renderRecords(); }
+    recycleItems.splice(idx, 1); saveJSON(K.RECYCLE, recycleItems); updateRecycleBadge(); openRecycleModal();
   } else if (action === 'permanent'){
     if (!confirm(`⚠️ 彻底删除「${item.name}」？\n\n此操作不可恢复。`)) return;
     if (item.type === 'special'){ recycleBanned.add(item.data.achId); saveSet(K.RECYCLE_BANNED, recycleBanned); }
     else if (item.type === 'custom'){ recycleBanned.add(item.data.id); saveSet(K.RECYCLE_BANNED, recycleBanned); }
-    recycleItems.splice(idx, 1);
-    saveJSON(K.RECYCLE, recycleItems);
-    updateRecycleBadge();
-    openRecycleModal();
+    recycleItems.splice(idx, 1); saveJSON(K.RECYCLE, recycleItems); updateRecycleBadge(); openRecycleModal();
   }
 }
 $('btnRecycle').onclick = () => openRecycleModal();
@@ -615,15 +830,66 @@ $('recycleClearAllBtn').onclick = () => {
   if (!recycleItems.length) return alert('回收站已空');
   if (!confirm('⚠️ 确定清空回收站？\n\n所有内容将被彻底删除，无法恢复。')) return;
   recycleItems.forEach(it => {
-    if (it.type === 'special' || it.type === 'custom'){
-      recycleBanned.add(it.type === 'special' ? it.data.achId : it.data.id);
-    }
+    if (it.type === 'special' || it.type === 'custom') recycleBanned.add(it.type === 'special' ? it.data.achId : it.data.id);
   });
   saveSet(K.RECYCLE_BANNED, recycleBanned);
-  recycleItems = [];
-  saveJSON(K.RECYCLE, recycleItems);
-  updateRecycleBadge();
-  openRecycleModal();
+  recycleItems = []; saveJSON(K.RECYCLE, recycleItems); updateRecycleBadge(); openRecycleModal();
+};
+
+/* ========== 项链的记录 ========== */
+function renderRecords() {
+  const list = $('recordList');
+  if (!recordsList.length) { list.innerHTML = '<div class="empty" style="padding:16px;font-size:12px">暂无记录</div>'; return; }
+  const sorted = [...recordsList].sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.ts - a.ts));
+  list.innerHTML = sorted.map(r => {
+    const title = `${r.color} ｜ ${r.price}-${r.chain}-${r.fire}-${r.clarity}`;
+    return `<div class="mourn-item" style="flex-direction:column;align-items:flex-start;gap:4px">
+      <div style="display:flex;justify-content:space-between;width:100%">
+        <span style="font-weight:600;font-size:13px;color:#0f766e">${esc(title)}</span>
+        <span class="mourn-item-del" data-id="${r.id}" style="font-size:18px">×</span>
+      </div>
+      ${r.date ? `<span style="font-size:11px;color:#94a3b8">📅 ${esc(r.date)}</span>` : ''}
+      <div style="font-size:13px;color:#334155;white-space:pre-wrap;word-break:break-word;margin-top:4px">${esc(r.content)}</div>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.mourn-item-del').forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.id;
+      const item = recordsList.find(r => String(r.id) === String(id));
+      if (!item) return;
+      if (!confirm('删除这条项链记录？\n（将进入回收站）')) return;
+      addToRecycle({ type:'record', icon:'🪶', name:`${item.color} ｜ ${item.price}-${item.chain}-${item.fire}-${item.clarity}`, desc:'项链记录' + (item.date ? ' · ' + item.date : ''), data: item });
+      recordsList = recordsList.filter(r => String(r.id) !== String(id));
+      saveJSON(K.RECORDS, recordsList); renderRecords();
+    };
+  });
+}
+function refreshRecordOptions() {
+  const o = getParsedOptions();
+  populateSelect($('recColor'), o.color); populateSelect($('recPrice'), o.price);
+  populateSelect($('recChain'), o.chain); populateSelect($('recFire'), o.fire);
+  populateSelect($('recClarity'), o.clarity);
+}
+$('recordHead').onclick = () => $('recordPanel').classList.toggle('collapsed');
+$('btnAddRecord').onclick = () => {
+  const color = $('recColor').value, price = $('recPrice').value, chain = $('recChain').value;
+  const fire = $('recFire').value, clarity = $('recClarity').value;
+  const date = $('recDate').value, content = $('recContent').value.trim();
+  if (!color || !price || !chain || !fire || !clarity) { $('recordHint').textContent = '请选择完整的项链信息'; $('recordHint').className = 'add-hint err'; return; }
+  if (!content) { $('recordHint').textContent = '请填写记录内容'; $('recordHint').className = 'add-hint err'; return; }
+  recordsList.push({ id:'rec_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), color, price, chain, fire, clarity, date, content, ts: Date.now() });
+  saveJSON(K.RECORDS, recordsList);
+  $('recContent').value = ''; $('recDate').value = '';
+  $('recordHint').textContent = '✅ 记录已保存'; $('recordHint').className = 'add-hint ok';
+  setTimeout(() => { $('recordHint').textContent = ''; $('recordHint').className = 'add-hint'; }, 2000);
+  renderRecords();
+};
+$('btnExportRecords').onclick = () => {
+  if (!recordsList.length) return alert('暂无记录可导出');
+  const data = [['颜色','蓝宝石价值','链身','流光火彩','宝石净度','相关日期','记录内容']];
+  const sorted = [...recordsList].sort((a,b) => (b.date || '').localeCompare(a.date || '') || (b.ts - a.ts));
+  sorted.forEach(r => data.push([r.color, r.price, r.chain, r.fire, r.clarity, r.date || '', r.content]));
+  downloadCSV('加页笔记_项链记录.csv', data);
 };
 
 /* ========== 永远怀念 ========== */
@@ -650,16 +916,9 @@ function renderMournList(){
       const item = mournRecords.find(r => String(r.id) === String(id));
       if (!item) return;
       if (!confirm('删除这条记录？\n（将进入回收站）')) return;
-      addToRecycle({
-        type: 'mourn', icon: '🕯️',
-        name: item.text.slice(0, 20) + (item.text.length > 20 ? '…' : ''),
-        desc: '怀念记录 · ' + formatTime(item.ts),
-        data: item
-      });
+      addToRecycle({ type:'mourn', icon:'🕯️', name: item.text.slice(0, 20) + (item.text.length > 20 ? '…' : ''), desc: '怀念记录 · ' + formatTime(item.ts), data: item });
       mournRecords = mournRecords.filter(r => String(r.id) !== String(id));
-      saveJSON(K.MOURN, mournRecords);
-      renderMournList();
-      checkSpecialAchievements();
+      saveJSON(K.MOURN, mournRecords); renderMournList(); checkSpecialAchievements();
     };
   });
 }
@@ -688,22 +947,76 @@ function renderCustomDanmaku(){
   $('btnMournCustomAdd').disabled = customDanmaku.length >= 10;
 }
 
-/* ========== 弹幕 ========== */
-const DANMAKU_TRACKS = 12;
-let danmakuTrackStatus = new Array(DANMAKU_TRACKS).fill(0);
-let danmakuQueue = [], danmakuProcessing = false;
-const DANMAKU_INTERVAL = 400;
-function pickDanmakuTrack(){
-  let bestIdx = 0, bestTime = Infinity;
-  for (let i = 0; i < DANMAKU_TRACKS; i++) if (danmakuTrackStatus[i] < bestTime){ bestTime = danmakuTrackStatus[i]; bestIdx = i; }
-  danmakuTrackStatus[bestIdx] = Date.now();
-  return bestIdx;
+/* ========== 弹幕（优化：避免重叠 + 更自然） ========== */
+const DANMAKU_TRACKS = 14;
+let trackLastFireTime = new Array(DANMAKU_TRACKS).fill(0);
+let trackLastSpeed = new Array(DANMAKU_TRACKS).fill(7); // 记录该轨道上一条弹幕的速度，便于连续弹幕速度接近
+const MIN_TRACK_GAP = 1600; // 同轨道两次发射最小间隔 (ms)
+
+function pickTrack(){
+  const now = Date.now();
+  // 优先选择空闲时间较长的轨道
+  const candidates = [];
+  for (let i = 0; i < DANMAKU_TRACKS; i++){
+    if (now - trackLastFireTime[i] >= MIN_TRACK_GAP) candidates.push(i);
+  }
+  if (candidates.length > 0){
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  }
+  // 全部冷却中，选最久未用的
+  let minIdx = 0, minGap = -Infinity;
+  for (let i = 0; i < DANMAKU_TRACKS; i++){
+    const gap = now - trackLastFireTime[i];
+    if (gap > minGap){ minGap = gap; minIdx = i; }
+  }
+  return minIdx;
+}
+
+function fireDanmaku(text, isMourn){
+  const layer = $('danmakuLayer');
+  const el = document.createElement('div');
+  el.className = 'danmaku-item' + (isMourn ? ' mourn-danmaku' : '');
+  const track = pickTrack();
+  trackLastFireTime[track] = Date.now();
+  // 垂直位置：轨道基础上加 ±1.5% 随机偏移，避免完全对齐
+  const baseTop = 3 + (track / DANMAKU_TRACKS) * 85;
+  const jitter = (Math.random() - 0.5) * 3;
+  el.style.top = Math.max(1, Math.min(90, baseTop + jitter)) + 'vh';
+  // 字号 13~16px
+  const fontSize = 13 + Math.random() * 3;
+  el.style.fontSize = fontSize + 'px';
+  if (!isMourn){
+    // 更丰富的配色
+    const colors = ['#334155','#475569','#64748b','#7c3aed','#be185d','#0e7490','#b45309','#1e40af','#059669','#c026d3'];
+    el.style.color = colors[Math.floor(Math.random() * colors.length)];
+  }
+  // 速度：5.5~8.5 秒之间随机，同轨道连续弹幕速度接近
+  let speed = 5.5 + Math.random() * 3;
+  if (Math.abs(speed - trackLastSpeed[track]) > 1.5){
+    speed = trackLastSpeed[track] + (Math.random() - 0.5) * 1.5;
+  }
+  trackLastSpeed[track] = speed;
+  // 长文本放慢一点，避免太快看不清
+  const duration = Math.max(speed, speed + text.length * 0.05);
+  el.style.animationDuration = duration + 's';
+  el.textContent = text;
+  layer.appendChild(el);
+  setTimeout(() => el.remove(), duration * 1000 + 300);
+}
+
+function addRandomSadEmoji(text){
+  const emoji = SAD_EMOJIS[Math.floor(Math.random() * SAD_EMOJIS.length)];
+  const pos = Math.floor(Math.random() * (text.length + 1));
+  return text.slice(0, pos) + emoji + text.slice(pos);
 }
 function queueDanmaku(text, isMourn){
   if (danmakuQueue.length >= 20) return;
   danmakuQueue.push({ text, isMourn: !!isMourn });
   if (!danmakuProcessing) processDanmakuQueue();
 }
+let danmakuQueue = [], danmakuProcessing = false;
+const DANMAKU_INTERVAL = 380;
+
 function processDanmakuQueue(){
   if (!danmakuQueue.length){ danmakuProcessing = false; return; }
   danmakuProcessing = true;
@@ -711,30 +1024,10 @@ function processDanmakuQueue(){
   fireDanmaku(item.text, item.isMourn);
   setTimeout(processDanmakuQueue, DANMAKU_INTERVAL);
 }
-function fireDanmaku(text, isMourn){
-  const layer = $('danmakuLayer');
-  const el = document.createElement('div');
-  el.className = 'danmaku-item' + (isMourn ? ' mourn-danmaku' : '');
-  el.style.top = (4 + (pickDanmakuTrack() / DANMAKU_TRACKS) * 84) + 'vh';
-  if (!isMourn){
-    const colors = ['#334155','#475569','#64748b','#7c3aed','#be185d','#0e7490'];
-    el.style.color = colors[Math.floor(Math.random() * colors.length)];
-  }
-  const duration = Math.max(6, Math.min(11, 6 + text.length * 0.12));
-  el.style.animationDuration = duration + 's';
-  el.textContent = text;
-  layer.appendChild(el);
-  setTimeout(() => el.remove(), duration * 1000 + 200);
-}
-function addRandomSadEmoji(text){
-  const emoji = SAD_EMOJIS[Math.floor(Math.random() * SAD_EMOJIS.length)];
-  const pos = Math.floor(Math.random() * (text.length + 1));
-  return text.slice(0, pos) + emoji + text.slice(pos);
-}
 function fireDanmakuBurst(){
   const withEmoji = $('mournWithEmoji').checked;
   const danmakuMourns = mournRecords.filter(r => r.showInDanmaku);
-  const count = 3 + Math.floor(Math.random() * 3);
+  const count = 3 + Math.floor(Math.random() * 4);
   for (let i = 0; i < count; i++){
     let text, isMourn = false;
     if (danmakuMourns.length > 0 && Math.random() < 0.7){
@@ -939,15 +1232,9 @@ function renderTasks(){
       const task = tasks.find(t => String(t.id) === String(el.dataset.id));
       if (!task) return;
       if (!confirm('删除这条任务？\n（将进入回收站）')) return;
-      addToRecycle({
-        type: 'task', icon: '📋',
-        name: `${task.price}-${task.chain}-${task.fire}-${task.clarity} (${task.color})`,
-        desc: task.completed ? '已完成任务' : '未完成任务',
-        data: task
-      });
+      addToRecycle({ type:'task', icon:'📋', name:`${task.price}-${task.chain}-${task.fire}-${task.clarity} (${task.color})`, desc: task.completed ? '已完成任务' : '未完成任务', data: task });
       tasks = tasks.filter(t => String(t.id) !== String(task.id));
-      saveJSON(K.TASKS, tasks);
-      renderTasks();
+      saveJSON(K.TASKS, tasks); renderTasks();
     }, 700); };
     const cancel = () => { if (pressTimer){ clearTimeout(pressTimer); pressTimer = null; } };
     el.addEventListener('touchstart', start, { passive:true });
@@ -985,7 +1272,7 @@ function checkTaskAchievements(){
     if (a.id.startsWith('task_set_') && taskStats.set >= a.count){ unlockedTaskAchievements.add(a.id); newOnes.push({...a, type:'task'}); }
     if (a.id.startsWith('task_done_') && taskStats.completed >= a.count){ unlockedTaskAchievements.add(a.id); newOnes.push({...a, type:'task'}); }
   }
-  if (newOnes.length){ saveSet(K.TASK_ACH, unlockedTaskAchievements); showAchievementPopup(newOnes, 'hidden'); }
+  if (newOnes.length){ saveSet(K.TASK_ACH, unlockedTaskAchievements); showAchievementPopup(newOnes, 'task'); }
   checkMysteryProgress(); renderAllAchievements();
 }
 
@@ -997,7 +1284,7 @@ function getAllUnlockedBadges(){
     if (unlockedHiddenAchievements.has(a.id) && !isBanned(a.id)){
       let subText = '隐藏';
       if (a.type === 'gem' && a.id === 'gem_1') subText = `× ${gemCount}`;
-      badges.push({ id:a.id, type:a.type === 'gem' ? 'gem' : 'hidden', icon:a.icon, name:a.name, desc:a.desc, subText });
+      badges.push({ id:a.id, type: a.type === 'gem' ? 'gem' : 'hidden', icon:a.icon, name:a.name, desc:a.desc, subText });
     }
   }
   for (const a of MOURN_ACHIEVEMENTS) if (unlockedMournAchievements.has(a.id) && !isBanned(a.id)) badges.push({ id:a.id, type:'mourn', icon:a.icon, name:a.name, desc:a.desc, subText:`× ${mournRecords.length}` });
@@ -1120,7 +1407,7 @@ function handleBadgeAction(action, badgeId){
     const b = customBadges.find(x => x.id === badgeId);
     if (!b) return;
     if (!confirm('删除这个自定义徽章？\n（将进入回收站）')){ $('badgeModal').classList.remove('show'); return; }
-    addToRecycle({ type: 'custom', icon: b.icon, name: b.name, desc: b.desc || '自定义徽章', data: b });
+    addToRecycle({ type:'custom', icon:b.icon, name:b.name, desc:b.desc || '自定义徽章', data: b });
     customBadges = customBadges.filter(x => x.id !== badgeId);
     saveJSON(K.CUSTOM_BADGES, customBadges);
     if (pinnedBadgeId === badgeId){ pinnedBadgeId = null; saveJSON(K.PINNED_BADGE, null); }
@@ -1131,7 +1418,7 @@ function handleBadgeAction(action, badgeId){
     const a = SPECIAL_ACHIEVEMENTS.find(x => x.id === badgeId);
     if (!a) return;
     if (!confirm(`删除特殊成就「${a.name}」？\n（将进入回收站）`)){ $('badgeModal').classList.remove('show'); return; }
-    addToRecycle({ type: 'special', icon: a.icon, name: a.name, desc: a.desc, data: { achId: badgeId } });
+    addToRecycle({ type:'special', icon:a.icon, name:a.name, desc:a.desc, data: { achId: badgeId } });
     unlockedSpecialAchievements.delete(badgeId);
     saveSet(K.SPECIAL_ACH, unlockedSpecialAchievements);
   }
@@ -1194,7 +1481,7 @@ function checkMournAchievements(){
       unlockedMournAchievements.add(a.id); newOnes.push({...a, type:'mourn'});
     }
   }
-  if (newOnes.length){ saveSet(K.MOURN_ACH, unlockedMournAchievements); showAchievementPopup(newOnes, 'hidden'); }
+  if (newOnes.length){ saveSet(K.MOURN_ACH, unlockedMournAchievements); showAchievementPopup(newOnes, 'mourn'); }
   checkMysteryProgress(); renderAllAchievements();
 }
 function checkPrayAchievements(){
@@ -1204,7 +1491,7 @@ function checkPrayAchievements(){
       unlockedPrayAchievements.add(a.id); newOnes.push({...a, type:'pray'});
     }
   }
-  if (newOnes.length){ saveSet(K.PRAY_ACH, unlockedPrayAchievements); showAchievementPopup(newOnes, 'hidden'); }
+  if (newOnes.length){ saveSet(K.PRAY_ACH, unlockedPrayAchievements); showAchievementPopup(newOnes, 'pray'); }
   checkMysteryProgress(); renderAllAchievements();
 }
 function checkSpecialAchievements(){
@@ -1233,6 +1520,11 @@ function checkSpecialAchievements(){
 }
 
 function showAchievementPopup(list, type){
+  if (uiSettings.simplifiedMode) return;
+  if (uiSettings.hideAchievements && (type === 'normal' || type === 'hidden' || type === 'special' || type === 'mystery')) return;
+  if (uiSettings.hideTasks && type === 'task') return;
+  if (uiSettings.hideMourn && (type === 'mourn' || type === 'pray')) return;
+
   const hasSpecial = type === 'special' || list.some(a => a.type === 'special');
   const hasMystery = type === 'mystery' || list.some(a => a.type === 'mystery');
   const hasHidden = list.some(a => ['gem','mourn','pray','hidden','task'].includes(a.type));
@@ -1257,10 +1549,7 @@ function showAchievementPopup(list, type){
     if (a.type === 'task') desc = a.id.startsWith('task_set_') ? `已设定 ${taskStats.set} 次任务` : `已完成 ${taskStats.completed} 次任务`;
     return `<div class="${cls}">
       <div class="icon">${a.icon}</div>
-      <div class="info">
-        <div class="name">${esc(a.name)}</div>
-        ${desc ? `<div class="desc">${esc(desc)}</div>` : ''}
-      </div>
+      <div class="info"><div class="name">${esc(a.name)}</div>${desc ? `<div class="desc">${esc(desc)}</div>` : ''}</div>
     </div>`;
   }).join('');
   $('achievementModal').classList.add('show');
@@ -1268,7 +1557,7 @@ function showAchievementPopup(list, type){
 $('achCloseBtn').onclick = () => $('achievementModal').classList.remove('show');
 
 $('resetBadgeBtn').onclick = () => {
-  if (confirm('确定要重置所有勋章记录吗？（不影响表格数据、怀念记录、祈祷次数、自定义徽章、任务和？？？）')){
+  if (confirm('确定要重置所有勋章记录吗？')){
     unlockedAchievements = new Set();
     unlockedHiddenAchievements = new Set();
     unlockedMournAchievements = new Set();
@@ -1288,7 +1577,7 @@ $('resetBadgeBtn').onclick = () => {
 
 /* ========== 初始化 ========== */
 $('btnInitAll').onclick = () => {
-  if (!confirm('⚠️ 危险操作！\n\n这将清空所有数据：\n· 表格数据\n· 所有成就和勋章\n· 怀念记录和祈祷次数\n· 自定义徽章和弹幕\n· 任务记录\n· 回收站\n· ？？？状态\n\n确定要继续吗？')) return;
+  if (!confirm('⚠️ 危险操作！\n\n这将清空所有数据，确定要继续吗？')) return;
   if (!confirm('⚠️ 最终确认！\n\n数据无法恢复，真的要初始化吗？')) return;
   Object.values(K).forEach(key => { try { localStorage.removeItem(key); } catch(e){} });
   alert('✅ 已恢复到初始状态');
@@ -1301,22 +1590,29 @@ function isMultiple3Value(v){ const s = String(v).trim(); if (!isNumeric(s)) ret
 
 let rows = [], cols = [], collectedMap = new Map(), cellIndex = new Map();
 
+/* ========== 表格数据本地保存 ========== */
+function saveTableData(){
+  if (!rows.length && !cols.length) return;
+  try { saveJSON(K.TABLE_DATA, { rows, cols, collected: [...collectedMap.entries()], savedAt: Date.now() }); } catch(e){}
+}
+function loadTableData(){
+  const data = loadJSON(K.TABLE_DATA, null);
+  if (!data || !Array.isArray(data.rows) || !Array.isArray(data.cols)) return false;
+  rows = data.rows; cols = data.cols;
+  collectedMap = new Map(data.collected || []);
+  $('importInfo').textContent = `已恢复上次的表格数据 ｜ ${rows.length} 行 × ${cols.length} 列 ｜ ${collectedMap.size} 条已有数据`;
+  refreshAddOptions(); refreshTaskOptions(); refreshRecordOptions(); rebuild();
+  return true;
+}
+
 function readFileAB(file){ return new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = () => rej(fr.error); fr.readAsArrayBuffer(file); }); }
 function parseCSV(text){
   text = text.replace(/^\uFEFF/, '');
   const out = []; let cur = [], field = '', inQ = false;
   for (let i = 0; i < text.length; i++){
     const ch = text[i];
-    if (inQ){
-      if (ch === '"'){ if (text[i+1] === '"'){ field += '"'; i++; } else inQ = false; }
-      else field += ch;
-    } else {
-      if (ch === '"') inQ = true;
-      else if (ch === ','){ cur.push(field); field = ''; }
-      else if (ch === '\n'){ cur.push(field); out.push(cur); cur = []; field = ''; }
-      else if (ch === '\r'){}
-      else field += ch;
-    }
+    if (inQ){ if (ch === '"'){ if (text[i+1] === '"'){ field += '"'; i++; } else inQ = false; } else field += ch; }
+    else { if (ch === '"') inQ = true; else if (ch === ','){ cur.push(field); field = ''; } else if (ch === '\n'){ cur.push(field); out.push(cur); cur = []; field = ''; } else if (ch === '\r'){} else field += ch; }
   }
   if (field !== '' || cur.length){ cur.push(field); out.push(cur); }
   return out;
@@ -1364,7 +1660,8 @@ async function importFile(file){
     }
     collectedMap = map;
     $('importInfo').textContent = `${file.name} ｜ ${rows.length} 行 × ${cols.length} 列 ｜ ${map.size} 条已有数据`;
-    refreshAddOptions(); refreshTaskOptions(); rebuild();
+    refreshAddOptions(); refreshTaskOptions(); refreshRecordOptions(); rebuild();
+    saveTableData();
   } catch (e){ alert('导入失败：' + e.message); }
 }
 function rebuild(){
@@ -1372,7 +1669,7 @@ function rebuild(){
   for (const r of rows) for (const c of cols){
     const k = KEY(r, c);
     if (isDisabledCell(r, c)) cellIndex.set(k, { r, c, done:false, value:'', disabled:true, gem:false });
-    else { const v = collectedMap.get(k); cellIndex.set(k, { r, c, done:v !== undefined, value:v === undefined ? '' : v, disabled:false, gem:isGemCell(r, c) }); }
+    else { const v = collectedMap.get(k); cellIndex.set(k, { r, c, done:v !== undefined, value: v === undefined ? '' : v, disabled:false, gem:isGemCell(r, c) }); }
   }
   updateStats(); renderTable();
 }
@@ -1417,18 +1714,18 @@ function renderTable(){
       const modeHit = mode === 'all' || (mode === 'blank' && !cell.done) || (mode === 'done' && cell.done);
       const dim = (kwHit && modeHit) ? '' : ' dim';
       let extraCls = '';
-      if (rowComplete){
-        extraCls = ' row-complete';
-      } else if (cell.gem){
-        extraCls = cell.done ? ' gem-cell done' : ' gem-cell';
-      } else if (cell.done){
+      if (rowComplete){ extraCls = ' row-complete'; }
+      else if (cell.gem){ extraCls = cell.done ? ' gem-cell done' : ' gem-cell'; }
+      else if (cell.done){
         const e = isEvenValue(cell.value), m = isMultiple3Value(cell.value);
         if (e && m) extraCls = ' both-highlight';
         else if (e) extraCls = ' even-highlight';
         else if (m) extraCls = ' multiple3-highlight';
       }
       const cls = 'cell ' + (cell.done && !cell.gem && !rowComplete ? 'done' : 'blank') + extraCls + dim;
-      parts.push(`<td class="${cls}" data-r="${esc(r)}" data-c="${esc(c)}">${cell.done ? esc(cell.value) : ''}</td>`);
+      const rk = KEY(r, c);
+      const hasRemark = cell.done && remarksMap[rk];
+      parts.push(`<td class="${cls}" data-r="${esc(r)}" data-c="${esc(c)}">${cell.done ? esc(cell.value) : ''}${hasRemark ? '<span class="remark-dot"></span>' : ''}</td>`);
     }
     parts.push('</tr>');
   }
@@ -1448,7 +1745,27 @@ $('tablebox').addEventListener('click', e => {
     else if (e) notes = ' ｜ <span style="color:#b45309">🟡 偶数</span>';
     else if (m) notes = ' ｜ <span style="color:#0e7490">🔵 3的倍数</span>';
   }
-  $('detail').innerHTML = `行：<b>${esc(td.dataset.r)}</b> ｜ 列：<b>${esc(td.dataset.c)}</b> ｜ 状态：<b style="color:${cell.done ? '#1c7a4a' : '#c0392b'}">${cell.done ? '已收集' : '空白'}</b> ｜ 数值：<b>${cell.done ? esc(cell.value) : '（无）'}</b>${notes}`;
+  const rk = KEY(td.dataset.r, td.dataset.c);
+  const remark = remarksMap[rk] || '';
+  $('detail').innerHTML = `行：<b>${esc(td.dataset.r)}</b> ｜ 列：<b>${esc(td.dataset.c)}</b> ｜ 状态：<b style="color:${cell.done ? '#1c7a4a' : '#c0392b'}">${cell.done ? '已收集' : '空白'}</b> ｜ 项链数量：<b>${cell.done ? esc(cell.value) : '（无）'}</b>${notes}<br><br>📝 备注：<span class="remark-display" id="remarkDisplay">${remark ? esc(remark) : '（暂无备注）'}</span><br><button class="remark-edit-btn" data-r="${esc(td.dataset.r)}" data-c="${esc(td.dataset.c)}">✏️ ${remark ? '编辑备注' : '添加备注'}</button>`;
+});
+$('detail').addEventListener('click', e => {
+  const btn = e.target.closest('.remark-edit-btn');
+  if (!btn) return;
+  const r = btn.dataset.r, c = btn.dataset.c;
+  const rk = KEY(r, c);
+  const cur = remarksMap[rk] || '';
+  const newRemark = prompt(`为「${r} ｜ ${c}」添加备注（最多20字）：\n（留空则删除备注）`, cur);
+  if (newRemark === null) return;
+  const trimmed = newRemark.trim();
+  if (trimmed.length > 20){ alert('表格内的备注最多 20 字，请精简一下。\n（如需写长内容，请使用「🪶 项链的记录」功能）'); return; }
+  if (trimmed) remarksMap[rk] = trimmed;
+  else delete remarksMap[rk];
+  saveJSON(K.REMARKS, remarksMap);
+  const disp = $('remarkDisplay');
+  if (disp) disp.textContent = trimmed || '（暂无备注）';
+  btn.textContent = trimmed ? '✏️ 编辑备注' : '✏️ 添加备注';
+  renderTable();
 });
 
 const DEFAULT_OPTIONS = {
@@ -1539,16 +1856,14 @@ function executeAddCollection(color, price, chain, fire, clarity, value, skipLim
       renderAllAchievements();
       return { ok:false, msg:'数值大于100，不录入' };
     }
-    if (numVal > 10){
-      if (!confirm('真的要导入这么多项链吗老大👀')) return { ok:false, msg:'已取消' };
-    }
+    if (numVal > 10){ if (!confirm('真的要导入这么多项链吗老大👀')) return { ok:false, msg:'已取消' }; }
   }
   const key = KEY(rowName, color);
   const existing = collectedMap.get(key);
   let finalValue;
   if (existing !== undefined){ finalValue = sumValues(existing, value); collectedMap.set(key, finalValue); }
   else { finalValue = value; collectedMap.set(key, finalValue); }
-  rebuild();
+  rebuild(); saveTableData();
   return { ok:true, finalValue, existing };
 }
 
@@ -1560,7 +1875,7 @@ $('btnAddNew').onclick = () => {
   if (!rows.length) return setAddHint('请先导入表格', 'err');
   const color = $('addColor').value, price = $('addPrice').value, chain = $('addChain').value, fire = $('addFire').value, clarity = $('addClarity').value, value = $('addValue').value.trim();
   if (!color || !price || !chain || !fire || !clarity) return setAddHint('请选择完整的5个选项', 'err');
-  if (value === '') return setAddHint('请输入数值', 'err');
+  if (value === '') return setAddHint('请输入项链数量', 'err');
   const rowName = `${price}-${chain}-${fire}-${clarity}`;
   if (!rows.includes(rowName) || !cols.includes(color)){
     const miss = [];
@@ -1596,12 +1911,7 @@ function flashCell(r, c){
 $('btnMournAdd').onclick = () => {
   const input = $('mournInput'); const text = input.value.trim();
   if (!text) return;
-  mournRecords.push({
-    id: Date.now() + Math.random().toString(36).slice(2,6),
-    ts: Date.now(), text,
-    withTime: $('mournWithTime').checked,
-    showInDanmaku: $('mournShowInDanmaku').checked
-  });
+  mournRecords.push({ id: Date.now() + Math.random().toString(36).slice(2,6), ts: Date.now(), text, withTime: $('mournWithTime').checked, showInDanmaku: $('mournShowInDanmaku').checked });
   saveJSON(K.MOURN, mournRecords);
   input.value = ''; renderMournList(); checkMournAchievements(); checkSpecialAchievements();
 };
@@ -1652,13 +1962,13 @@ function isAllCollected(){
 
 $('btnExportAll').onclick = () => {
   if (!rows.length) return alert('请先导入表格');
-  const data = [['行名','列名','状态','数值']];
+  const data = [['行名','列名','状态','项链数量','备注']];
   for (const r of rows) for (const c of cols){
     const cell = cellIndex.get(KEY(r, c));
     if (cell.disabled) continue;
-    data.push([r, c, cell.done ? '已收集' : '空白', cell.value]);
+    data.push([r, c, cell.done ? '已收集' : '空白', cell.value, cell.done ? (remarksMap[KEY(r, c)] || '') : '']);
   }
-  showListModal('📥 全量明细', data, '加页手记_全量明细.csv');
+  showListModal('📥 全量明细', data, '加页笔记_全量明细.csv');
 };
 $('btnExportBlank').onclick = () => {
   if (!rows.length) return alert('请先导入表格');
@@ -1670,7 +1980,7 @@ $('btnExportBlank').onclick = () => {
     if (!cell.done) data.push([r + '-' + c]);
   }
   if (data.length === 1) return alert('没有未收集的项');
-  showListModal('📋 未收集清单', data, '加页手记_未收集清单.csv');
+  showListModal('📋 未收集清单', data, '加页笔记_未收集清单.csv');
 };
 $('btnExportStats').onclick = () => {
   if (!rows.length) return alert('请先导入表格');
@@ -1692,19 +2002,19 @@ $('btnExportStats').onclick = () => {
   }
   const totalPct = totalAll ? (totalDone / totalAll * 100).toFixed(1) + '%' : '0%';
   data.push(['总计', totalDone, totalAll, totalAll - totalDone, totalPct]);
-  showListModal('📈 蓝宝石总量', data, '加页手记_蓝宝石总量.csv');
+  showListModal('📈 蓝宝石总量', data, '加页笔记_蓝宝石总量.csv');
 };
 $('btnExportCollected').onclick = () => {
   if (!rows.length) return alert('请先导入表格');
   if (isAllCollected()) alert('居然是全收集吗，不愧是老大！');
-  const data = [['行名','列名','收集数值']];
+  const data = [['行名','列名','项链数量','备注']];
   for (const r of rows) for (const c of cols){
     const cell = cellIndex.get(KEY(r, c));
     if (cell.disabled) continue;
-    if (cell.done) data.push([r, c, cell.value]);
+    if (cell.done) data.push([r, c, cell.value, remarksMap[KEY(r, c)] || '']);
   }
   if (data.length === 1) return alert('暂无已收集的记录');
-  showListModal('✅ 已收集明细', data, '加页手记_已收集明细.csv');
+  showListModal('✅ 已收集明细', data, '加页笔记_已收集明细.csv');
 };
 $('btnExportNewTable').onclick = () => {
   if (!rows.length) return alert('请先导入表格');
@@ -1719,7 +2029,7 @@ $('btnExportNewTable').onclick = () => {
     }
     data.push(rowData);
   }
-  showListModal('💾 新收集表格', data, '加页手记_新收集表格.csv');
+  showListModal('💾 新收集表格', data, '加页笔记_新收集表格.csv');
 };
 
 $('fileImport').addEventListener('change', e => { if (e.target.files[0]) importFile(e.target.files[0]); });
@@ -1757,18 +2067,26 @@ let timer = null;
 $('search').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderTable, 200); });
 $('filter').addEventListener('change', renderTable);
 
+/* ========== 初始化 ========== */
+applyUISettings();
+bindSettingsEvents();
+updateNoticeDot();
 renderAllAchievements();
 refreshAddOptions();
 refreshTaskOptions();
+refreshRecordOptions();
 renderTasks();
 renderMournList();
 renderPrayUnlock();
+renderRecords();
+renderLinkage();
 checkMournAchievements();
 checkPrayAchievements();
 checkSpecialAchievements();
 checkTaskAchievements();
 checkMysteryProgress();
 updateRecycleBadge();
+loadTableData();
 </script>
 </body>
 </html>
